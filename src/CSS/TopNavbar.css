@@ -1,0 +1,19 @@
+.navbar .nav-link.dropdown-toggle::after {
+    display: none;
+}
+
+.profile-picture {
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.hamburger-icon {
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.nav-py{
+    padding: 0.8rem 0 ;
+}
