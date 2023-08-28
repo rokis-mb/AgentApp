@@ -186,6 +186,16 @@ const AgentTable = () => {
         },
     ]
 
+    const customStyles = {
+        headCells: {
+            style: {
+                backgroundColor: '#0F52BA',
+                color: 'white',
+                fontSize: 'medium'
+            },
+        },
+    }
+
     return (
         <>
             <DataTable columns={columns} data={agent}
@@ -194,6 +204,7 @@ const AgentTable = () => {
                 fixedHeaderScrollHeight='600px'
                 selectableRows
                 selectableRowsHighlight
+                customStyles={customStyles}
             />
 
             <Modal show={show} onHide={handleClose}>

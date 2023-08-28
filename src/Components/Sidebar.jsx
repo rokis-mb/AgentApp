@@ -22,7 +22,7 @@ import '../CSS/Sidebar.css';
 
 const Sidebar = () => {
     return (
-        <CDBSidebar textColor="#F0FFFF" backgroundColor="linear-gradient(180deg, #0F52BA 100%, #0818A8 100%)">
+        <CDBSidebar textColor="#F0FFFF" backgroundColor="#0F52BA">
             <CDBSidebarHeader prefix={<FontAwesomeIcon icon={faBars} />}></CDBSidebarHeader>
             <CDBSidebarContent>
                 <CDBSidebarMenu>

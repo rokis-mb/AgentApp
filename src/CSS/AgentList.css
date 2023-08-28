@@ -1,3 +1,8 @@
 .modal-dialog {
     max-width: 80vw !important;
 }
+
+.addBtn{
+    background-color: #0F52BA;
+    margin-bottom: 0.5rem;
+}

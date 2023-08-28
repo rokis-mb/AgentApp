@@ -20,7 +20,7 @@ const TopNavbar = () => {
     return (
         <Navbar expand="md" className="bg-body-tertiary nav-py">
             <Container fluid>
-                <Navbar.Brand href="#">Falcon</Navbar.Brand>
+                <Navbar.Brand href="#">LOGO</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll" className="justify-content-between">
                     <Form className="d-flex">
@@ -42,13 +42,13 @@ const TopNavbar = () => {
                             <FontAwesomeIcon icon={faBell} />
                         </Nav.Link>
                         <NavDropdown title={<FontAwesomeIcon icon={faTh} />} id="navbarScrollingDropdown" drop="right" align="end">
-                            <NavDropdown.Item href="#action">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action1">
-                                Another action
+                            <NavDropdown.Item href="#action1">Action 1</NavDropdown.Item>
+                            <NavDropdown.Item href="#action2">
+                            Action 2
                             </NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action2">
-                                Something else here
+                            <NavDropdown.Item href="#action3">
+                            Action 2
                             </NavDropdown.Item>
                         </NavDropdown>
                         <Nav.Link href="#">

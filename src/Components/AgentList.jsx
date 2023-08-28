@@ -53,7 +53,7 @@ const AgentList = () => {
             <Container >
                 <Row className='justify-content-sm-end'>
                     <Col sm='auto'>
-                        <Button onClick={handleOpen} variant="primary" size="md">Create Agent</Button>
+                        <Button onClick={handleOpen} className='addBtn' size="md"> + Add Agent</Button>
                     </Col>
                 </Row>
             </Container>
