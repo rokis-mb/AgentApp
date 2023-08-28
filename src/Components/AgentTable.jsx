@@ -2,8 +2,12 @@ import Button from 'react-bootstrap/Button'
 import { useContext, useEffect, useState } from 'react'
 import DataTable from 'react-data-table-component'
 import Modal from 'react-bootstrap/Modal';
+import Badge from 'react-bootstrap/Badge';
 import { AgentContext } from '../Context/AgentContextProvider';
 import EditAgentForm from './EditAgentForm';
+
+import EditIcon from '@mui/icons-material/Edit';
+import LockResetIcon from '@mui/icons-material/LockReset';
 
 // import '../CSS/AgentTable.css'
 
@@ -146,6 +150,7 @@ const AgentTable = () => {
         {
             name: "S.N",
             cell: (row, index) => index + 1,
+            width: "4rem",
         },
         {
             name: "Fullname",
@@ -176,11 +181,11 @@ const AgentTable = () => {
         },
         {
             name: "Action",
-            width: "250px", // Adjust the width as needed
+            width: "10rem", // Adjust the width as needed
             cell: (row) => (
                 <div className='d-flex'>
-                    <Button onClick={() => handleOpen(row)} className="btn btn-info">Edit</Button>&nbsp;
-                    <Button onClick={() => handleRPOpen(row)} className="btn btn-warning">Reset Password</Button>
+                    <Button title="Edit" onClick={() => handleOpen(row)} className="btn btn-info"><EditIcon/></Button>&nbsp;
+                    <Button title="Reset Password" onClick={() => handleRPOpen(row)} className="btn btn-warning"><LockResetIcon/></Button>
                 </div>
             )
         },
@@ -201,9 +206,9 @@ const AgentTable = () => {
             <DataTable columns={columns} data={agent}
                 // pagination
                 fixedHeader
-                fixedHeaderScrollHeight='600px'
-                selectableRows
-                selectableRowsHighlight
+                fixedHeaderScrollHeight='500px'
+                // selectableRows
+                // selectableRowsHighlight
                 customStyles={customStyles}
             />
 
@@ -262,9 +267,9 @@ function Allow({ data }) {
         })
     }
     return (
-        <span className={`uk-badge ${isAllowed ? 'uk-badge-success' : 'uk-badge-danger'}`} onClick={() => allow(isAllowed)}>
+        <Badge pill  bg={`${isAllowed ? 'success' : 'danger'}`} onClick={() => allow(isAllowed)}>
             {isAllowed ? 'Allow' : 'Disallow'}
-        </span>
+        </Badge>
     )
 }
 
@@ -289,9 +294,9 @@ function Active({ data }) {
         })
     }
     return (
-        <span className={`uk-badge ${isActivated ? 'uk-badge-success' : 'uk-badge-danger'}`} onClick={() => activate(isActivated)}>
+        <Badge pill  bg={`${isActivated ? 'success' : 'danger'}`} onClick={() => activate(isActivated)}>
             {isActivated ? 'Activate' : 'Deactivate'}
-        </span>
+        </Badge>
     )
 }
 
