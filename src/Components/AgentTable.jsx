@@ -199,6 +199,11 @@ const AgentTable = () => {
                 fontSize: 'medium'
             },
         },
+        cells: {
+            style: {
+                fontSize: 'medium'
+            },
+        },
     }
 
     return (
