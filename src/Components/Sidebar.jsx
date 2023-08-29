@@ -20,7 +20,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import '../CSS/Sidebar.css';
 
-const Sidebar = () => {
+const Sidebar = ({ onSuperAgentClick }) => {
     return (
         <CDBSidebar textColor="#F0FFFF" backgroundColor="#0F52BA" maxWidth='auto'>
             <CDBSidebarHeader prefix={<FontAwesomeIcon icon={faBars} />}></CDBSidebarHeader>
@@ -30,6 +30,7 @@ const Sidebar = () => {
 
                     <div className='sidebar-divider'></div>
 
+                    <CDBSidebarMenuItem icon="user-secret" title="Super Agent" onClick={onSuperAgentClick}>Super Agent</CDBSidebarMenuItem>
                     <CDBSidebarMenuItem icon="calendar">Calendar</CDBSidebarMenuItem>
                     <CDBSidebarMenuItem icon="comments" iconType="solid">Chat</CDBSidebarMenuItem>
                     <CDBSidebarMenuItem icon="envelope">Email</CDBSidebarMenuItem>

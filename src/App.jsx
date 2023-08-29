@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TopNavbar from './Components/TopNavbar';
 import Sidebar from './Components/Sidebar';
 import "./App.css"
@@ -13,20 +13,26 @@ library.add(fas);
 
 const App = () => {
     const [searchValue, setSearchValue] = useState('');
+    const [showAgentList, setShowAgentList] = useState(false); 
+
 
     const handleSearchChange = (event) => {
         setSearchValue(event.target.value);
     };
 
+    const handleSuperAgentClick = () => {
+        setShowAgentList(prevState => !prevState); // Toggle the state
+    };
+    
     return (
         <AgentContextProvider>
             <div className='d-flex'>
                 <div className='h-full'>
-                    <Sidebar />
+                <Sidebar onSuperAgentClick={handleSuperAgentClick} />
                 </div>
                 <div className='w-full'>
-                    <TopNavbar searchValue={searchValue} handleSearchChange={handleSearchChange} />
-                    <AgentList />
+                    <TopNavbar />
+                    {showAgentList && <AgentList />}
                 </div>
 
 
