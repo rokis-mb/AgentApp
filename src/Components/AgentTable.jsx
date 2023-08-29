@@ -169,7 +169,7 @@ const AgentTable = () => {
             sortable: "true"
         },
         {
-            name: "Category",
+            name: "Access",
             selector: (row) =>
                 <Allow data={row} />
         },
@@ -184,8 +184,8 @@ const AgentTable = () => {
             width: "10rem", // Adjust the width as needed
             cell: (row) => (
                 <div className='d-flex'>
-                    <Button title="Edit" onClick={() => handleOpen(row)} className="btn btn-info"><EditIcon/></Button>&nbsp;
-                    <Button title="Reset Password" onClick={() => handleRPOpen(row)} className="btn btn-warning"><LockResetIcon/></Button>
+                    <Button title="Edit" onClick={() => handleOpen(row)} className="btn bg-transparent"><EditIcon style={{ color: '#0F52BA' }}/></Button>&nbsp;
+                    <Button title="Reset Password" onClick={() => handleRPOpen(row)} className="btn bg-transparent"><LockResetIcon style={{ color: '#0F52BA' }}/></Button>
                 </div>
             )
         },
@@ -272,9 +272,12 @@ function Allow({ data }) {
         })
     }
     return (
-        <Badge pill  bg={`${isAllowed ? 'success' : 'danger'}`} onClick={() => allow(isAllowed)}>
+        <Badge pill onClick={() => allow(isAllowed)} style={{ cursor: 'pointer' }}>
             {isAllowed ? 'Allow' : 'Disallow'}
         </Badge>
+        // <Badge pill  bg={`${isAllowed ? 'success' : 'danger'}`} onClick={() => allow(isAllowed)} style={{ cursor: 'pointer' }}>
+        //     {isAllowed ? 'Allow' : 'Disallow'}
+        // </Badge>
     )
 }
 
@@ -299,9 +302,12 @@ function Active({ data }) {
         })
     }
     return (
-        <Badge pill  bg={`${isActivated ? 'success' : 'danger'}`} onClick={() => activate(isActivated)}>
+        <Badge pill onClick={() => activate(isActivated)} style={{ cursor: 'pointer' }}>
             {isActivated ? 'Activate' : 'Deactivate'}
         </Badge>
+        // <Badge pill  bg={`${isActivated ? 'success' : 'danger'}`} onClick={() => activate(isActivated)} style={{ cursor: 'pointer' }}>
+        //     {isActivated ? 'Activate' : 'Deactivate'}
+        // </Badge>
     )
 }
 
