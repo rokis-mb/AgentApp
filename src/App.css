@@ -11,18 +11,10 @@
 /* App.css */
 .app-container {
     display: flex;
-    flex-direction: column;
     height: 100vh; /* Set the height of the app container to full viewport height */
     overflow: hidden; /* Hide overflow to prevent scrollbars */
   
     /* Add any other styling you want for the app container */
-  }
-  
-  .main-content {
-    display: flex;
-    flex-direction: row;
-    flex: 1; /* Take up the remaining space */
-    overflow: hidden; /* Hide overflow to prevent scrollbars */
   }
   
   .content {
@@ -32,10 +24,12 @@
   }
 
   .content-container {
-    display: flex; /* New container for sidebar and content */
-    flex: 1;
-    padding: 20px; /* Add padding around the container */
     overflow: hidden;
+    width:100vw ;
+  }
+
+  .main-content{
+    padding-top: 5rem ;
   }
   
   /* Adjust styling for the CustomSidebar and TopNavbar as needed */

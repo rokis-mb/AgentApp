@@ -8,7 +8,6 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faBell, faTh } from '@fortawesome/free-solid-svg-icons'; // Import the faTh (waffle) icon
 import Image from 'react-bootstrap/Image';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 import '../CSS/TopNavbar.css'
 
@@ -21,19 +20,13 @@ const TopNavbar = () => {
         setSearchValue(event.target.value);
     };
 
-    const handleSidebarToggle = () => {
-        setSidebarOpen(prevState => !prevState);
-        console.log(sidebarOpen)
-    };
+    
 
     return (
-        <Navbar expand="md" className="bg-body-tertiary nav-py zIndex">
+        <Navbar expand="md" className={`bg-body-transparent nav-py zIndex nav-pl ${sidebarOpen? "navbar-open" : "navbar-close" }`}>
             <Container fluid>
-                <FontAwesomeIcon icon={faBars} className="toggle-button" onClick={handleSidebarToggle} />
-                
-                <Navbar.Brand href="#">LOGO</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
-                <Navbar.Collapse id="navbarScroll" className="justify-content-between">
+                <Navbar.Collapse id="navbarScroll" className={`justify-content-between  `}>
                     <Form className="d-flex">
                         <Form.Control
                             type="search"

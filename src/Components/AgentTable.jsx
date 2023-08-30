@@ -188,8 +188,8 @@ const AgentTable = () => {
             width: "10rem", // Adjust the width as needed
             cell: (row) => (
                 <div className='d-flex'>
-                    <Button title="Edit" onClick={() => handleOpen(row)} className="btn bg-transparent"><EditIcon style={{ color: '#0F52BA' }}/></Button>&nbsp;
-                    <Button title="Reset Password" onClick={() => handleRPOpen(row)} className="btn bg-transparent"><LockResetIcon style={{ color: '#0F52BA' }}/></Button>
+                    <button title="Edit" onClick={() => handleOpen(row)}className="btn bg-transparent"><EditIcon style={{ color: '#0F52BA', border: "0px!important" }}/></button>&nbsp;
+                    <button title="Reset Password" onClick={() => handleRPOpen(row)} className="btn bg-transparent"><LockResetIcon style={{ color: '#0F52BA' }}/></button>
                 </div>
             )
         },
@@ -200,12 +200,15 @@ const AgentTable = () => {
             style: {
                 backgroundColor: '#0F52BA',
                 color: 'white',
-                fontSize: 'medium'
+                fontSize: 'medium',
+                borderLeft: '1px solid #666  ',
             },
         },
         cells: {
             style: {
-                fontSize: 'medium'
+                fontSize: 'medium',
+                borderLeft: '1px solid #eee  ',
+                // borderCollapse: 'coll'
             },
         },
     }
@@ -216,8 +219,8 @@ const AgentTable = () => {
                 pagination
                 fixedHeader
                 fixedHeaderScrollHeight='500px'
-                // selectableRows
-                // selectableRowsHighlight
+                selectableRows
+                selectableRowsHighlight
                 customStyles={customStyles}
             />
 

@@ -6,3 +6,15 @@
     background-color: #0F52BA;
     margin-bottom: 0.5rem;
 }
+
+.open-container{
+    max-width: 1300px !important;
+    width: 100% ;
+    margin-left: 2rem;
+}
+
+.container-agent{
+    /* background-color: aqua; */
+    width: 100%;
+    max-width: 1430px;
+}

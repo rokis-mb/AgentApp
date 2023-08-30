@@ -9,8 +9,11 @@ import { AgentContext } from '../Context/AgentContextProvider';
 import { useContext,useState } from 'react'
 
 import '../CSS/AgentList.css'
+import { useSidebarContext } from '../Context/SidebarContext';
 
 const AgentList = () => {
+
+    const { sidebarOpen } = useSidebarContext();
 
     // States
     const [show, setShow] = useState(false);
@@ -48,7 +51,7 @@ const AgentList = () => {
     }
     
     return (
-        <div className="p-3">
+        <div className={`p-3 container-agent ${sidebarOpen ? 'open-container' : 'close'}`}>
             <h2>Agent Table</h2>
             <Container >
                 <Row className='justify-content-sm-end'>
