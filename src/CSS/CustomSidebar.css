@@ -37,14 +37,16 @@
     z-index: 100;
     position: fixed;
     bottom: 2px;
-    
-background: rgb(14,0,255);
-background: linear-gradient(152deg, rgba(14,0,255,1) 0%, rgba(0,0,173,1) 35%, rgba(0,212,255,1) 100%);
+
+
+    background: rgb(14, 0, 255);
+    background: linear-gradient(152deg, rgba(14, 0, 255, 1) 0%, rgba(0, 0, 173, 1) 35%, rgba(0, 212, 255, 1) 100%);
     overflow-y: auto;
     align-items: center;
 }
+
 .open {
-    width: 12.5rem; 
+    width: 12.5rem;
     z-index: 999;
 }
 
@@ -52,14 +54,15 @@ background: linear-gradient(152deg, rgba(14,0,255,1) 0%, rgba(0,0,173,1) 35%, rg
     width: 10rem;
 }
 
-.navbar-container-open{
+.navbar-container-open {
     display: flex;
     flex-direction: column;
     width: 12.5rem;
     padding: 0 1rem;
 
 }
-.navbar-container{
+
+.navbar-container {
     display: flex;
     flex-direction: column;
     width: 6.5rem;
@@ -67,14 +70,14 @@ background: linear-gradient(152deg, rgba(14,0,255,1) 0%, rgba(0,0,173,1) 35%, rg
 
 }
 
-.sidebar-icon-only{
+.sidebar-icon-only {
     font-size: 18px;
     margin: 0.1rem 0;
 }
 
 .custom-sidebar:not(.open) .sidebar-item {
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
     padding: 10px 20px;
     color: #ffffff;
@@ -82,7 +85,7 @@ background: linear-gradient(152deg, rgba(14,0,255,1) 0%, rgba(0,0,173,1) 35%, rg
     transition: background-color 0.3s;
 }
 
-.nav-title{
+.nav-title {
     align-items: center;
     height: 5rem;
 }

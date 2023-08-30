@@ -22,14 +22,13 @@ import '../CSS/CustomSidebar.css';
 import { useNavigate } from 'react-router-dom';
 
 const CustomSidebar = () => {
-    const { setSidebarOpen } = useSidebarContext();
+    const { setSidebarOpen, sidebarOpen } = useSidebarContext();
 
     const navigate = useNavigate();
     const handleSidebarToggle = () => {
         setSidebarOpen(prevState => !prevState);
         console.log(sidebarOpen)
     };
-    const { sidebarOpen } = useSidebarContext();
     const sidebarItems = [
         { icon: faHome, title: 'Home', onclick: () => navigate("/") },
         { icon: faUserSecret, title: 'Super Agent', onclick: () => navigate("/SuperAgent") },
@@ -49,10 +48,10 @@ const CustomSidebar = () => {
                 <FontAwesomeIcon icon={faBars} className="toggle-button" onClick={handleSidebarToggle} />
                 <Navbar.Brand className='nav-logo' href="#">LOGO</Navbar.Brand>
             </div>
-            <div className={`custom-sidebar ${sidebarOpen ? 'open' : ''}`}>
+            <div className={`custom-sidebar ${sidebarOpen ? 'open' : ''}`} >
                 <div className="sidebar-content">
                     <ul className="sidebar-list">
-                        {sidebarOpen ? (
+                        {/* {sidebarOpen ? (
                             sidebarItems.map((item, index) => (
                                 <li key={index} className="sidebar-item" onClick={item.onclick}>
                                     <FontAwesomeIcon icon={item.icon} className="sidebar-icon" />
@@ -65,7 +64,15 @@ const CustomSidebar = () => {
                                     <FontAwesomeIcon icon={item.icon} className="sidebar-icon-only" />
                                 </li>
                             ))
-                        )}
+                        )} */}
+                        {
+                            sidebarItems.map((item, index) => (
+                                <li key={index} className="sidebar-item" onClick={item.onclick}>
+                                    <FontAwesomeIcon icon={item.icon} className={sidebarOpen?"sidebar-icon":"sidebar-icon-only"} />
+                                    {sidebarOpen && <span className="sidebar-title">{item.title}</span>}
+                                </li>
+                            ))
+                        }
                     </ul>
                 </div>
             </div>
