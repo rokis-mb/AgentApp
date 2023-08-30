@@ -1,0 +1,80 @@
+/* CustomSidebar.css */
+
+.sidebar-list {
+    background-color: #0F52BA;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.sidebar-item:hover {
+    background-color: rgb(245, 99, 99);
+}
+
+.sidebar-icon {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.sidebar-title {
+    font-size: 14px;
+}
+
+
+/* CustomSidebar.css */
+.custom-sidebar {
+    border-radius: 0.5rem;
+    width: auto;
+    /* Set the desired width for the sidebar */
+    height: calc(100% - 80px);
+    /* Set the sidebar to full height of its container */
+    padding: 10px;
+
+    /* ... existing styles ... */
+
+    /* Add these styles to ensure proper positioning */
+    position: fixed;
+    /* top: 60px; */
+    /* Adjust this value to match the height of your TopNavbar */
+
+    /* left: 0; */
+    
+    bottom: 2px;
+    background-color: #0F52BA;
+    /* Set the sidebar's background color */
+    overflow-y: auto;
+    /* Allow content to scroll if needed */
+
+    /* display: flex;
+    flex-direction: column; */
+    align-items: center;
+}
+.open {
+    /* Styles for the open state */
+    width: auto; /* Adjust this width to your preference */
+    /* Add any other styles you want for the open state */
+}
+
+.sidebar-icon-only{
+    font-size: 18px;
+    margin: 0.1rem 0;
+}
+
+.custom-sidebar:not(.open) .sidebar-item {
+    display: flex;
+    justify-content: center; /* Center icons horizontally */
+    align-items: center; /* Center icons vertically */
+    padding: 10px 20px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}

@@ -17,6 +17,8 @@ const AgentTable = () => {
     const { updateAgent, agentInfo, setAgentInfo } = useContext(AgentContext);
     const [show, setShow] = useState(false);
     const [rpshow, setRPShow] = useState(false);
+    
+    
 
     // Fetching data from the api
 
@@ -55,6 +57,8 @@ const AgentTable = () => {
     useEffect(() => {
         getAgents();
     }, [])
+
+    
 
     const handleRPClose = () => {
         setRPShow(false)
@@ -209,7 +213,7 @@ const AgentTable = () => {
     return (
         <>
             <DataTable columns={columns} data={agent}
-                // pagination
+                pagination
                 fixedHeader
                 fixedHeaderScrollHeight='500px'
                 // selectableRows

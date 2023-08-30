@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
+import { useSidebarContext } from '../Context/SidebarContext';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -7,19 +8,29 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faBell, faTh } from '@fortawesome/free-solid-svg-icons'; // Import the faTh (waffle) icon
 import Image from 'react-bootstrap/Image';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 import '../CSS/TopNavbar.css'
 
 const TopNavbar = () => {
+    const { setSidebarOpen, sidebarOpen } = useSidebarContext();
     const [searchValue, setSearchValue] = useState('');
+    // const [sidebarOpen, setSidebarOpen] = useState(false);
 
     const handleSearchChange = (event) => {
         setSearchValue(event.target.value);
     };
 
+    const handleSidebarToggle = () => {
+        setSidebarOpen(prevState => !prevState);
+        console.log(sidebarOpen)
+    };
+
     return (
-        <Navbar expand="md" className="bg-body-tertiary nav-py">
+        <Navbar expand="md" className="bg-body-tertiary nav-py zIndex">
             <Container fluid>
+                <FontAwesomeIcon icon={faBars} className="toggle-button" onClick={handleSidebarToggle} />
+                
                 <Navbar.Brand href="#">LOGO</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll" className="justify-content-between">
