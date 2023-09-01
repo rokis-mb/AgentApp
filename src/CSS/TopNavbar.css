@@ -17,16 +17,15 @@
 }
 
 .nav-py{
-    padding: 0.8rem 0 ;
     position: fixed;
     top: 0;
-    width: calc(100% - 13.5rem);
-    left: 13.5rem;
+    width: 100vw;
+    left: 0;
 }
 
-.nav-pl{
+/* .nav-pl{
     padding-left: 10rem;
-}
+} */
 
 .toggle-button{
     cursor: pointer;

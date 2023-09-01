@@ -5,7 +5,6 @@ import "./App.css"
 import AgentList from "./Components/AgentList";
 import AgentContextProvider from './Context/AgentContextProvider';
 import CustomSidebar from './Components/CustomSidebar';
-import CustomNavbar from './Components/CustomNavbar';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -26,7 +25,7 @@ const App = () => {
             <SidebarProvider>
                 <div className='app-container'>
                     <CustomSidebar isOpen={sidebarOpen} />
-                    <div className=" main-content ">
+                    <div className={`${sidebarOpen? "main-content main-content-open" : "main-content"}`}>
                             <TopNavbar />
                         <div className='content-container'>
                             {/* <CustomNavbar /> */}

@@ -12,25 +12,33 @@
 .app-container {
     display: flex;
     height: 100vh; /* Set the height of the app container to full viewport height */
-    overflow: hidden; /* Hide overflow to prevent scrollbars */
+    /* overflow: hidden; */
   
     /* Add any other styling you want for the app container */
   }
   
   .content {
     flex: 1; /* Take up the remaining space */
-    overflow: auto; /* Allow content to scroll if needed */
+    overflow: auto; 
     padding: 20px; /* Add padding as needed */
   }
 
   .content-container {
-    overflow: hidden;
-    width:100vw ;
+    /* overflow: hidden; */
+    /* width:100vw ; */
   }
 
   .main-content{
     padding-top: 5rem ;
+    /* padding-left: 6.5rem; */
+    width: calc(100vw - 6.5rem);
   }
+  .main-content-open {
+    /* padding-left: 12.5rem; */
+    width: calc(100vw - 12.5rem);
+
+  }
+
   
   /* Adjust styling for the CustomSidebar and TopNavbar as needed */
   

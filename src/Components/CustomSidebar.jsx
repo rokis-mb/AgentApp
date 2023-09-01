@@ -43,37 +43,23 @@ const CustomSidebar = () => {
     ];
 
     return (
-        <div className={` ${sidebarOpen ? 'navbar-container-open' : 'navbar-container'}`}>
-            <div className='d-flex nav-title'>
-                <FontAwesomeIcon icon={faBars} className="toggle-button" onClick={handleSidebarToggle} />
-                <Navbar.Brand className='nav-logo' href="#">LOGO</Navbar.Brand>
-            </div>
-            <div className={`custom-sidebar ${sidebarOpen ? 'open' : ''}`} >
-                <div className="sidebar-content">
-                    <ul className="sidebar-list">
-                        {/* {sidebarOpen ? (
-                            sidebarItems.map((item, index) => (
-                                <li key={index} className="sidebar-item" onClick={item.onclick}>
-                                    <FontAwesomeIcon icon={item.icon} className="sidebar-icon" />
-                                    <span className="sidebar-title">{item.title}</span>
-                                </li>
-                            ))
-                        ) : (
-                            sidebarItems.map((item, index) => (
-                                <li key={index} className="sidebar-item" onClick={item.onclick}>
-                                    <FontAwesomeIcon icon={item.icon} className="sidebar-icon-only" />
-                                </li>
-                            ))
-                        )} */}
-                        {
-                            sidebarItems.map((item, index) => (
-                                <li key={index} className="sidebar-item" onClick={item.onclick}>
-                                    <FontAwesomeIcon icon={item.icon} className={sidebarOpen?"sidebar-icon":"sidebar-icon-only"} />
-                                    {sidebarOpen && <span className="sidebar-title">{item.title}</span>}
-                                </li>
-                            ))
-                        }
-                    </ul>
+        <div className='sidebar-container'>
+
+            <div className={` ${sidebarOpen ? 'navbar-container-open' : 'navbar-container'}`}>
+
+                <div className={`custom-sidebar ${sidebarOpen ? 'open' : ''}`} >
+                    <div className="sidebar-content">
+                        <ul className="sidebar-list">
+                            {
+                                sidebarItems.map((item, index) => (
+                                    <li key={index} className="sidebar-item" onClick={item.onclick}>
+                                        <FontAwesomeIcon icon={item.icon} className={sidebarOpen ? "sidebar-icon" : "sidebar-icon-only"} />
+                                        {sidebarOpen && <span className="sidebar-title">{item.title}</span>}
+                                    </li>
+                                ))
+                            }
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
