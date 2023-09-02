@@ -64,7 +64,10 @@ const CreateAgentForm = () => {
 
                 <Row>
                     <Col className='mb-2' md={4}>
-                        <Form.Control type="file" onChange={handleImageChange} />
+                        <Form.Control type="file" id = "image-input" onChange={handleImageChange} hidden/>
+                        <label for = "image-input">
+                            Custom Input image +
+                        </label>
                     </Col>
                     <Col className='mb-2' md={4}>
                         {imageData && <img src={`data:image/png;base64,${imageData}`} alt="Agent" style={{ maxWidth: '100px' }} />}

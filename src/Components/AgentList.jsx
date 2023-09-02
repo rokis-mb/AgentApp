@@ -6,7 +6,9 @@ import CreateAgentForm from './CreateAgentForm';
 import Modal from 'react-bootstrap/Modal';
 import AgentTable from './AgentTable';
 import { AgentContext } from '../Context/AgentContextProvider';
-import { useContext,useState } from 'react'
+import { useContext, useState } from 'react'
+import Form from 'react-bootstrap/Form';
+
 
 import '../CSS/AgentList.css'
 import { useSidebarContext } from '../Context/SidebarContext';
@@ -17,7 +19,13 @@ const AgentList = () => {
 
     // States
     const [show, setShow] = useState(false);
-    const {agent } = useContext(AgentContext);
+    const { agent } = useContext(AgentContext);
+
+    const [searchValue, setSearchValue] = useState('');
+
+    const handleSearchChange = (event) => {
+        setSearchValue(event.target.value);
+    };
 
 
     const handleClose = () => {
@@ -28,13 +36,13 @@ const AgentList = () => {
         setShow(true)
     }
 
-    function handleAddButton(){
+    function handleAddButton() {
         handleClose();
         createAgent(agent);
     }
 
     async function createAgent(data) {
-        try{
+        try {
 
             await fetch("https://testing.esnep.com/happyhomes/api/admin/agent", {
                 method: "POST",
@@ -45,18 +53,36 @@ const AgentList = () => {
                 body: JSON.stringify(data)
             })
         }
-        catch(error){
+        catch (error) {
             console.log(error)
         }
     }
-    
+
     return (
         <div className={`p-3 container-agent ${sidebarOpen ? 'open-container' : 'close'}`}>
-            <h2>Agent Table</h2>
+            <div className='agent-table-header'>
+                <h2>Department</h2>
+                <span>Expires in: 1 yrs 5 months 1 days</span>
+            </div>
             <Container >
-                <Row className='justify-content-sm-end'>
+                <Row className='justify-content-md-end'>
                     <Col sm='auto'>
                         <Button onClick={handleOpen} className='addBtn' size="md"> + Add New</Button>
+                    </Col>
+                </Row>
+                <hr />
+                <Row className='justify-content-md-end'>
+                    <Col sm='auto'>
+
+                        <Form.Control
+                            type="search"
+                            placeholder="Search"
+                            className="me-2 mb-2 justify-content-end"
+                            style={{ height: '38px', width: '300px' }}
+                            value={searchValue}
+                            onChange={handleSearchChange}
+                            aria-label="Search"
+                        />
                     </Col>
                 </Row>
             </Container>
@@ -74,7 +100,7 @@ const AgentList = () => {
                 </Modal.Footer>
             </Modal>
 
-            <AgentTable/>
+            <AgentTable />
         </div>
     )
 }

@@ -90,3 +90,22 @@
 .sidebar-container{
     padding: 1rem;
 }
+
+
+/* Submenu Styling */
+
+.submenu {
+    display: none;
+    padding-left: 2rem;
+    margin-top: 1px;
+}
+
+
+.submenu-item {
+    cursor: pointer;
+}
+
+
+.submenu-open {
+    display: block ;
+}

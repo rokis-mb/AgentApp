@@ -7,6 +7,12 @@
     margin-bottom: 0.5rem;
 }
 
+.agent-table-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 /* .open-container{
     max-width: 1300px !important;
     width: 100% ;
