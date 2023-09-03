@@ -6,10 +6,11 @@ import Badge from 'react-bootstrap/Badge';
 import { AgentContext } from '../Context/AgentContextProvider';
 import EditAgentForm from './EditAgentForm';
 
+
 import EditIcon from '@mui/icons-material/Edit';
 import LockResetIcon from '@mui/icons-material/LockReset';
 
-// import '../CSS/AgentTable.css'
+import '../CSS/AgentTable.css'
 
 const AgentTable = () => {
     const [agent, setAgent] = useState([]);
@@ -224,10 +225,10 @@ const AgentTable = () => {
                 customStyles={customStyles}
             />
 
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
+            <Modal show={show} onHide={handleClose} backdrop='static' size='sm'>
+                <Modal.Header closeButton className='modal-header'>
                     <Modal.Title>Edit Agent</Modal.Title>
-                </Modal.Header>
+                </Modal.Header >
                 <Modal.Body>
                     <EditAgentForm agent={agentInfo} />
                 </Modal.Body>
@@ -238,7 +239,7 @@ const AgentTable = () => {
                 </Modal.Footer>
             </Modal>
 
-            <Modal show={rpshow} onHide={handleRPClose}>
+            <Modal show={rpshow} onHide={handleRPClose} backdrop='static'>
                 <Modal.Header closeButton>
                     <Modal.Title>Reset Password</Modal.Title>
                 </Modal.Header>

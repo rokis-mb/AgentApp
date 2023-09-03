@@ -59,48 +59,50 @@ const AgentList = () => {
     }
 
     return (
-        <div className={`p-3 container-agent ${sidebarOpen ? 'open-container' : 'close'}`}>
+        <div className={`p-3  container-agent ${sidebarOpen ? 'open-container' : 'close'}`}>
             <div className='agent-table-header'>
                 <h2>Department</h2>
                 <span>Expires in: 1 yrs 5 months 1 days</span>
             </div>
-            <Container >
-                <Row className='justify-content-md-end'>
-                    <Col sm='auto'>
-                        <Button onClick={handleOpen} className='addBtn' size="md"> + Add New</Button>
-                    </Col>
-                </Row>
-                <hr />
-                <Row className='justify-content-md-end'>
-                    <Col sm='auto'>
+            <div className='table-container'>
+                <Container >
+                    <Row className='justify-content-md-end'>
+                        <Col sm='auto'>
+                            <Button onClick={handleOpen} className='addBtn' size="md"> + Add New</Button>
+                        </Col>
+                    </Row>
+                    <hr />
+                    <Row className='justify-content-md-end'>
+                        <Col sm='auto'>
 
-                        <Form.Control
-                            type="search"
-                            placeholder="Search"
-                            className="me-2 mb-2 justify-content-end"
-                            style={{ height: '38px', width: '300px' }}
-                            value={searchValue}
-                            onChange={handleSearchChange}
-                            aria-label="Search"
-                        />
-                    </Col>
-                </Row>
-            </Container>
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Super Agent</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <CreateAgentForm />
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="primary" onClick={handleAddButton}>
-                        Add Agent
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+                            <Form.Control
+                                type="search"
+                                placeholder="Search"
+                                className="me-2 mb-2 justify-content-end"
+                                style={{ height: '38px', width: '300px' }}
+                                value={searchValue}
+                                onChange={handleSearchChange}
+                                aria-label="Search"
+                            />
+                        </Col>
+                    </Row>
+                </Container>
+                <Modal show={show} onHide={handleClose} backdrop='static'>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Super Agent</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <CreateAgentForm />
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button className='addBtn' onClick={handleAddButton}>
+                            Add Agent
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
 
-            <AgentTable />
+                <AgentTable />
+            </div>
         </div>
     )
 }

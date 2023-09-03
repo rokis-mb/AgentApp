@@ -1,0 +1,21 @@
+.img-input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.image-box{
+    display: flex;
+}
+
+.my-form-control:focus {
+    outline: none !important; /* Remove the outline */
+    border-color: #ced4da; /* Set the desired border color */
+    /* Add any other styles you want to apply when the control is focused */
+  }
+
+

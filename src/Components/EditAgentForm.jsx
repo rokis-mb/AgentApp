@@ -4,6 +4,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useContext, useEffect, useState } from 'react';
 import { AgentContext } from '../Context/AgentContextProvider';
+import AddIcon from '@mui/icons-material/Add';
+
+// import '../CSS/EditAgentForm'
 
 export default function EditAgentForm({ agent }) {
 
@@ -14,7 +17,7 @@ export default function EditAgentForm({ agent }) {
     const { updateAgent, setUpdateAgent } = useContext(AgentContext);
     const [imageData, setImageData] = useState('');
 
-       
+
 
     useEffect(() => {
         setUpdateAgent(
@@ -50,22 +53,24 @@ export default function EditAgentForm({ agent }) {
             reader.readAsDataURL(file);
         }
     };
-    
+
 
     return (
         <Form>
             <Container>
-                <Row >
+                <Row className=''>
                     <Col className='mb-2' md={4}>
+                        <Form.Label>Fullname</Form.Label>
                         <Form.Control type="text" placeholder="FullName" defaultValue={agentData?.FullName} onChange={(e) => setUpdateAgent({ ...updateAgent, FullName: e.target.value })} />
                     </Col>
 
                     <Col className='mb-2' md={4}>
-
-                        <Form.Control type="text" placeholder="Address" defaultValue={agentData?.Address} onChange={(e) => setUpdateAgent({ ...updateAgent, Address: e.target.value })} />
+                        <Form.Label>Address</Form.Label>
+                        <Form.Control type="text" defaultValue={agentData?.Address} onChange={(e) => setUpdateAgent({ ...updateAgent, Address: e.target.value })} />
                     </Col>
 
                     <Col className='mb-2' md={4}>
+                        <Form.Label>District</Form.Label>
                         <Form.Select
                             aria-label="Default select example"
                             defaultValue={agentData?.District || ""} // Set the default value for District input field
@@ -79,46 +84,62 @@ export default function EditAgentForm({ agent }) {
                     </Col>
                 </Row>
 
-                <Row >
+                <Row className='mt-2'>
                     <Col className='mb-2' md={4}>
-                        <Form.Control type="text" placeholder="Star Grading" defaultValue={agentData?.GradingRate} onChange={(e) => setUpdateAgent({ ...updateAgent, StarGrading: e.target.value })} />
+                        <Form.Label>Star Grading</Form.Label>
+                        <Form.Control type="text" defaultValue={agentData?.GradingRate} onChange={(e) => setUpdateAgent({ ...updateAgent, StarGrading: e.target.value })} />
                     </Col>
                     <Col className='mb-2' md={4}>
-                        <Form.Control type="text" placeholder="Academic" defaultValue={agentData?.Academic} onChange={(e) => setUpdateAgent({ ...updateAgent, Academic: e.target.value })} />
+                        <Form.Label>Academic</Form.Label>
+                        <Form.Control type="text" defaultValue={agentData?.Academic} onChange={(e) => setUpdateAgent({ ...updateAgent, Academic: e.target.value })} />
                     </Col>
                     <Col className='mb-2' md={4}>
-                        <Form.Control type="text" placeholder="Professional" defaultValue={agentData?.Professional} onChange={(e) => setUpdateAgent({ ...updateAgent, Professional: e.target.value })} />
-                    </Col>
-                </Row>
-
-                <Row >
-                    <Col className='mb-2' md={4}>
-                        <Form.Control type="text" placeholder="Work Experience" defaultValue={agentData?.WorkExp} onChange={(e) => setUpdateAgent({ ...updateAgent, WorkExp: e.target.value })} />
-                    </Col>
-                    <Col className='mb-2' md={4}>
-                        <Form.Control type="text" placeholder="Response Time" defaultValue={agentData?.ResponseTime} onChange={(e) => setUpdateAgent({ ...updateAgent, ResponseTime: e.target.value })} />
-                    </Col>
-                    <Col className='mb-2' md={4}>
-                        <Form.Control type="text" placeholder="Product Category" defaultValue={agentData?.ProdCategory} onChange={(e) => setUpdateAgent({ ...updateAgent, ProductCat: e.target.value })} />
+                        <Form.Label>Professional</Form.Label>
+                        <Form.Control type="text" defaultValue={agentData?.Professional} onChange={(e) => setUpdateAgent({ ...updateAgent, Professional: e.target.value })} />
                     </Col>
                 </Row>
 
-                <Row >
+                <Row className='mt-2'>
                     <Col className='mb-2' md={4}>
-                        <Form.Control type="text" placeholder="Product Type" defaultValue={agentData?.ProdType} onChange={(e) => setUpdateAgent({ ...updateAgent, ProductType: e.target.value })} />
+                    <Form.Label>Work Experience</Form.Label>
+                        <Form.Control type="text" defaultValue={agentData?.WorkExp} onChange={(e) => setUpdateAgent({ ...updateAgent, WorkExp: e.target.value })} />
                     </Col>
                     <Col className='mb-2' md={4}>
-                        <Form.Control as="textarea" rows={3} placeholder="Statement" defaultValue={agentData?.Statement} onChange={(e) => setUpdateAgent({ ...updateAgent, Statement: e.target.value })} />
+                    <Form.Label>Response Time</Form.Label>
+                        <Form.Control type="text" defaultValue={agentData?.ResponseTime} onChange={(e) => setUpdateAgent({ ...updateAgent, ResponseTime: e.target.value })} />
+                    </Col>
+                    <Col className='mb-2' md={4}>
+                    <Form.Label>Product Category</Form.Label>
+                        <Form.Control type="text" defaultValue={agentData?.ProdCategory} onChange={(e) => setUpdateAgent({ ...updateAgent, ProductCat: e.target.value })} />
                     </Col>
                 </Row>
 
-                <Row >
+                <Row className='mt-2'>
                     <Col className='mb-2' md={4}>
-                        <Form.Control type="file" onChange={handleImageChange} />
+                    <Form.Label>Product Type</Form.Label>
+                        <Form.Control type="text" defaultValue={agentData?.ProdType} onChange={(e) => setUpdateAgent({ ...updateAgent, ProductType: e.target.value })} />
                     </Col>
                     <Col className='mb-2' md={4}>
-                        {imageData && <img src={`data:image/png;base64,${imageData}`} alt="Agent" style={{ maxWidth: '100px' }} />}
+                    <Form.Label>Statement</Form.Label>
+                        <Form.Control as="textarea" rows={3} defaultValue={agentData?.Statement} onChange={(e) => setUpdateAgent({ ...updateAgent, Statement: e.target.value })} />
                     </Col>
+                </Row>
+
+                <Row className='mt-2'>
+                    <Col className=' image-box' md={4}>
+                        <Form.Control type="file" id="image-input" onChange={handleImageChange} hidden />
+                        <div >
+
+                            <Form.Label>Upload Image</Form.Label>
+                            <label for="image-input" className='img-input'>
+                                <AddIcon />
+                            </label>
+                        </div>
+                        {imageData && <img src={`data:image/png;base64,${imageData}`} alt="Agent" style={{ maxWidth: '100px', objectFit: 'contain', marginLeft: "1rem" }} />}
+                    </Col>
+                    <Col className='' md={4}>
+                    </Col>
+
                 </Row>
 
             </Container>

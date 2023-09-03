@@ -1,8 +1,30 @@
-.uk-form-icon {
-    pointer-events: auto !important;
-    cursor: pointer;
-  }
 
-Badge:hover{
-    cursor: pointer !important;
-  }
+
+.modal-header {
+  background-color: #0F52BA;
+  color: white;
+  height: 4rem;
+}
+
+.modal-title{
+  font-size: 1.3rem;
+}
+
+.modal-body{
+  /* padding: 2rem !important; */
+}
+
+.form-label {
+  /* margin-bottom: 0.5rem; */
+  font-size: 0.9rem;
+  color: gray;
+
+}
+
+.form-control, .form-select{
+  border-radius: 0px !important;
+}
+
+.btn-close{
+  --bs-btn-close-bg: url(https://flaticons.net/icon.php?slug_category=mobile-application&slug_icon=close);
+}
