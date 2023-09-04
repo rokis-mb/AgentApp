@@ -5,14 +5,14 @@ import Col from 'react-bootstrap/Col';
 import CreateAgentForm from './CreateAgentForm';
 import Modal from 'react-bootstrap/Modal';
 import AgentTable from './AgentTable';
-import { AgentContext } from '../Context/AgentContextProvider';
+import { AgentContext } from '../../Context/AgentContextProvider';
 import { useContext, useState } from 'react'
 import Form from 'react-bootstrap/Form';
 
 
-import '../CSS/AgentList.css'
-import { useSidebarContext } from '../Context/SidebarContext';
-import SearchBox from './SubComponents/SearchBox';
+import '../../CSS/AgentList.css'
+import { useSidebarContext } from '../../Context/SidebarContext';
+import SearchBox from '../SubComponents/SearchBox';
 
 const AgentList = () => {
 
@@ -75,7 +75,6 @@ const AgentList = () => {
                     <hr />
                     <Row className='justify-content-md-end'>
                         <Col sm='auto' className='mb-2'>
-
                             <SearchBox/>
                         </Col>
                     </Row>
@@ -93,7 +92,6 @@ const AgentList = () => {
                         </Button>
                     </Modal.Footer>
                 </Modal>
-
                 <AgentTable />
             </div>
         </div>

@@ -3,11 +3,11 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useContext, useEffect, useState } from 'react';
-import { AgentContext } from '../Context/AgentContextProvider';
+import { AgentContext } from '../../Context/AgentContextProvider';
 import AddIcon from '@mui/icons-material/Add';
 import ClearIcon from '@mui/icons-material/Clear';
-import Input from './SubComponents/Input';
-import DropDown from './SubComponents/DropDown';
+import Input from '../SubComponents/Input';
+import DropDown from '../SubComponents/DropDown';
 
 // import '../CSS/EditAgentForm'
 

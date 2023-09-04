@@ -61,6 +61,11 @@
     color: #0F52BA;
 }
 
+.navbar{
+         --bs-navbar-padding-y: 0;
+         background-color: #ebedfb;
+}
+
 
 /* .navbar-open {
    width: calc(100% - 12.5rem);

@@ -30,11 +30,11 @@ const CustomSidebar = () => {
     };
 
     const sidebarItems = [
-        { icon: faHome, title: 'Home', onclick: () => navigate('/') },
+        { icon: faHome, title: 'Property', onclick: () => navigate('/Property') },
         { icon: faUserSecret, title: 'Super Agent', onclick: () => navigate('/SuperAgent') },
-        { icon: faCalendar, title: 'Calendar' },
-        { icon: faComments, title: 'Chat' },
-        { icon: faEnvelope, title: 'Email' },
+        { icon: faCalendar, title: 'Calendar', onclick: () => navigate('/')},
+        { icon: faComments, title: 'Chat', onclick: () => navigate('/') },
+        { icon: faEnvelope, title: 'Email', onclick: () => navigate('/') },
         {
             icon: faCalendarDay,
             title: 'Events',
@@ -43,9 +43,9 @@ const CustomSidebar = () => {
                 { title: 'Event 2', onclick: () => navigate('/event2') },
             ],
         },
-        { icon: faGlobe, title: 'Landing' },
-        { icon: faLock, title: 'Authentication' },
-        { icon: faTags, title: 'Pricing' },
+        { icon: faGlobe, title: 'Landing', onclick: () => navigate('/') },
+        { icon: faLock, title: 'Authentication', onclick: () => navigate('/') },
+        { icon: faTags, title: 'Pricing', onclick: () => navigate('/') },
         {
             icon: faCogs,
             title: 'Settings',

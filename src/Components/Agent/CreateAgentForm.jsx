@@ -2,12 +2,12 @@ import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { AgentContext } from '../Context/AgentContextProvider';
+import { AgentContext } from '../../Context/AgentContextProvider';
 import React, { useContext, useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
-import '../CSS/CreateAgentForm.css'
-import Input from './SubComponents/Input';
-import DropDown from './SubComponents/DropDown';
+import '../../CSS/CreateAgentForm.css'
+import Input from '../SubComponents/Input';
+import DropDown from '../SubComponents/DropDown';
 import ClearIcon from '@mui/icons-material/Clear';
 
 
@@ -16,6 +16,7 @@ const CreateAgentForm = () => {
     const { setAgent, agent } = useContext(AgentContext);
     const [imageData, setImageData] = useState('');
     const [c_imageUrl, setC_imageUrl] = useState("");
+    const [isClearingImage, setIsClearingImage] = useState(false);
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
@@ -29,13 +30,33 @@ const CreateAgentForm = () => {
                 setAgent({ ...agent, Image: base64Data });
             };
             reader.readAsDataURL(file);
+        } else {
+            setIsClearingImage(true); // Set the flag when clearing the image
+        }
+    };
+
+    const clearImage = () => {
+        setC_imageUrl('');
+        // Clear the file input value to prevent it from triggering onChange event again
+        setIsClearingImage(true);
+        const fileInput = document.getElementById('image-input');
+        if (fileInput) {
+            fileInput.value = '';
+        }
+    };
+
+    const handleFileInputChange = (e) => {
+        if (!isClearingImage) {
+            handleImageChange(e);
+        } else {
+            setIsClearingImage(false); // Reset the flag
         }
     };
 
     const options = [
-        {name : 'Kathmandu', value : '1'},
-        {name : 'Bhaktapur', value : '2'},
-        {name : 'Lalitpur', value : '3'},
+        { name: 'Kathmandu', value: '1' },
+        { name: 'Bhaktapur', value: '2' },
+        { name: 'Lalitpur', value: '3' },
     ]
 
     return (
@@ -51,7 +72,7 @@ const CreateAgentForm = () => {
                     <Col md={4}><Form.Label>Password</Form.Label><Input type="password" onChange={(e) => setAgent({ ...agent, Password: e.target.value })} /></Col>
                     <Col md={4}><Form.Label>Address</Form.Label><Input type="text" onChange={(e) => setAgent({ ...agent, Address: e.target.value })} /></Col>
                     <Col md={4}><Form.Label>District</Form.Label>
-                        <DropDown options={options} onChange={(e) => setAgent({ ...agent, District: e.target.value })}/>
+                        <DropDown options={options} onChange={(e) => setAgent({ ...agent, District: e.target.value })} />
                     </Col>
                 </Row>
 
@@ -74,20 +95,31 @@ const CreateAgentForm = () => {
                 </Row>
 
                 <Row className='mt-2'>
-                <Col className=' image-box' md={4}>
+                    <Col className=' image-box' md={4}>
                         <Form.Control
                             type="file"
                             id="image-input"
-                            onChange={(e) => {if (!c_imageUrl) {handleImageChange(e); }}}
+                            onChange={handleFileInputChange}
                             hidden
                         />
 
-                        <div className='d-flex flex-column justify-content-center '>
-
+                        <div className='d-flex flex-column justify-content-center'>
                             <Form.Label className='d-flex justify-content-center'>Upload Image</Form.Label>
-                            <label htmlFor="image-input" className='img-input' style={{ backgroundImage: `url('${c_imageUrl}')`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
-                                {!c_imageUrl ? <AddIcon fontSize='large' /> : <ClearIcon onClick={() => setC_imageUrl("")} />}
-
+                            <label
+                                htmlFor="image-input"
+                                className='img-input'
+                                style={{
+                                    backgroundImage: `url('${c_imageUrl}')`,
+                                    backgroundSize: 'cover',
+                                    backgroundRepeat: 'no-repeat',
+                                    backgroundPosition: 'center',
+                                }}
+                            >
+                                {!c_imageUrl ? (
+                                    <AddIcon fontSize='large' />
+                                ) : (
+                                    <ClearIcon fontSize='large' onClick={clearImage} />
+                                )}
                             </label>
                         </div>
                         {/* {imageData && <img src={`data:image/png;base64,${imageData}`} alt="Agent" style={{ maxWidth: '100px', objectFit: 'contain', marginLeft: "1rem" }} />} */}

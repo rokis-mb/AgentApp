@@ -3,14 +3,14 @@ import { useContext, useEffect, useState } from 'react'
 import DataTable from 'react-data-table-component'
 import Modal from 'react-bootstrap/Modal';
 import Badge from 'react-bootstrap/Badge';
-import { AgentContext } from '../Context/AgentContextProvider';
+import { AgentContext } from '../../Context/AgentContextProvider';
 import EditAgentForm from './EditAgentForm';
 
 
 import EditIcon from '@mui/icons-material/Edit';
 import LockResetIcon from '@mui/icons-material/LockReset';
 
-import '../CSS/AgentTable.css'
+import '../../CSS/AgentTable.css'
 
 const AgentTable = () => {
     const [agent, setAgent] = useState([]);
