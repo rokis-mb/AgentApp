@@ -1,44 +1,58 @@
 /* App.css */
 
-.w-full{
-    width: 100vw;
+.w-full {
+  width: 100vw;
 }
 
-.h-full{
-    height: 100vh;
+.h-full {
+  height: 100vh;
 }
 
 /* App.css */
 .app-container {
-    display: flex;
-    height: 100vh; /* Set the height of the app container to full viewport height */
-    /* overflow: hidden; */
-  
-    /* Add any other styling you want for the app container */
-  }
-  
-  .content {
-    flex: 1; /* Take up the remaining space */
-    overflow: auto; 
-    padding: 20px; /* Add padding as needed */
-  }
+  display: flex;
+  height: 100vh;
+  /* Set the height of the app container to full viewport height */
+  /* overflow: hidden; */
 
-  .content-container {
-    /* overflow: hidden; */
-    /* width:100vw ; */
-  }
+  /* Add any other styling you want for the app container */
+}
 
-  .main-content{
-    padding-top: 5rem ;
-    /* padding-left: 6.5rem; */
-    width: calc(100vw - 6.5rem);
-  }
-  .main-content-open {
-    /* padding-left: 12.5rem; */
-    width: calc(100vw - 12.5rem);
+.content {
+  flex: 1;
+  /* Take up the remaining space */
+  overflow: auto;
+  padding: 20px;
+  /* Add padding as needed */
+}
 
-  }
+.content-container {
+  /* overflow: hidden; */
+  /* width:100vw ; */
+}
 
-  
-  /* Adjust styling for the CustomSidebar and TopNavbar as needed */
-  
+.main-content {
+  padding-top: 5rem;
+  /* padding-left: 6.5rem; */
+  width: calc(100vw - 6.5rem);
+}
+
+.main-content-open {
+  /* padding-left: 12.5rem; */
+  width: calc(100vw - 12.5rem);
+
+}
+
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  width: 100%;
+  padding-right: 0;
+  padding-left: calc(var(--bs-gutter-x) * .5);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+
+/* Adjust styling for the CustomSidebar and TopNavbar as needed */

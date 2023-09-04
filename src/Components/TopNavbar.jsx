@@ -12,6 +12,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 
 import '../CSS/TopNavbar.css'
+import SearchBox from './SubComponents/SearchBox';
 
 const TopNavbar = () => {
     const { setSidebarOpen, sidebarOpen } = useSidebarContext();
@@ -26,27 +27,23 @@ const TopNavbar = () => {
         setSidebarOpen(prevState => !prevState);
         console.log(sidebarOpen)
     };
-    
+
 
     return (
-        <Navbar expand="md" className={`bg-body-transparent nav-py zIndex nav-pl ${sidebarOpen? "navbar-open" : "navbar-close" }`}>
+        <Navbar expand="md" className={`bg-body-transparent nav-py zIndex nav-pl ${sidebarOpen ? "navbar-open" : "navbar-close"}`}>
             <Container fluid>
-            <div className='d-flex nav-title'>
-                <FontAwesomeIcon icon={faBars} className="toggle-button" onClick={handleSidebarToggle} />
-                <Navbar.Brand className='nav-logo' href="#">LOGO</Navbar.Brand>
-            </div>
+                <div className='d-flex nav-title'>
+                    <FontAwesomeIcon icon={faBars} className="toggle-button" onClick={handleSidebarToggle} />
+                    <Navbar.Brand className='nav-logo' href="#">
+                            <img className='logo-img' src="https://basobashappyhomes.com/static/media/logo.7c96b30bb1e0b7346f3b.png" alt="Logo" />
+                        
+                        <div className='logo-text-container'>Basobas Happy Homes Pvt. Ltd</div>
+                    </Navbar.Brand>
+                </div>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll" className={`justify-content-between  `}>
                     <Form className="d-flex">
-                        <Form.Control
-                            type="search"
-                            placeholder="Search"
-                            className="me-2 rounded-pill"
-                            style={{ height: '38px', width: '300px' }}
-                            value={searchValue}
-                            onChange={handleSearchChange}
-                            aria-label="Search"
-                        />
+                        <SearchBox />
                     </Form>
                     <Nav className="ms-auto">
                         <Nav.Link href="#cart">

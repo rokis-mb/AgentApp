@@ -225,7 +225,7 @@ const AgentTable = () => {
                 customStyles={customStyles}
             />
 
-            <Modal show={show} onHide={handleClose} backdrop='static' size='sm'>
+            <Modal show={show} onHide={handleClose} backdrop='static' size='sm' keyboard={false}>
                 <Modal.Header closeButton className='modal-header'>
                     <Modal.Title>Edit Agent</Modal.Title>
                 </Modal.Header >
@@ -239,7 +239,7 @@ const AgentTable = () => {
                 </Modal.Footer>
             </Modal>
 
-            <Modal show={rpshow} onHide={handleRPClose} backdrop='static'>
+            <Modal show={rpshow} onHide={handleRPClose} backdrop='static' keyboard={false}>
                 <Modal.Header closeButton>
                     <Modal.Title>Reset Password</Modal.Title>
                 </Modal.Header>

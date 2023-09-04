@@ -27,4 +27,5 @@
 
 .btn-close{
   --bs-btn-close-bg: url(https://flaticons.net/icon.php?slug_category=mobile-application&slug_icon=close);
+  --bs-btn-close-focus-shadow: none !important
 }

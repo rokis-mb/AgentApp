@@ -12,6 +12,7 @@ import Form from 'react-bootstrap/Form';
 
 import '../CSS/AgentList.css'
 import { useSidebarContext } from '../Context/SidebarContext';
+import SearchBox from './SubComponents/SearchBox';
 
 const AgentList = () => {
 
@@ -59,12 +60,12 @@ const AgentList = () => {
     }
 
     return (
-        <div className={`p-3  container-agent ${sidebarOpen ? 'open-container' : 'close'}`}>
+        <div className={`p-3 table-container container-agent ${sidebarOpen ? 'open-container' : 'close'}`}>
             <div className='agent-table-header'>
                 <h2>Department</h2>
                 <span>Expires in: 1 yrs 5 months 1 days</span>
             </div>
-            <div className='table-container'>
+            <div className=''>
                 <Container >
                     <Row className='justify-content-md-end'>
                         <Col sm='auto'>
@@ -73,21 +74,13 @@ const AgentList = () => {
                     </Row>
                     <hr />
                     <Row className='justify-content-md-end'>
-                        <Col sm='auto'>
+                        <Col sm='auto' className='mb-2'>
 
-                            <Form.Control
-                                type="search"
-                                placeholder="Search"
-                                className="me-2 mb-2 justify-content-end"
-                                style={{ height: '38px', width: '300px' }}
-                                value={searchValue}
-                                onChange={handleSearchChange}
-                                aria-label="Search"
-                            />
+                            <SearchBox/>
                         </Col>
                     </Row>
                 </Container>
-                <Modal show={show} onHide={handleClose} backdrop='static'>
+                <Modal show={show} onHide={handleClose} backdrop='static' keyboard={false}>
                     <Modal.Header closeButton>
                         <Modal.Title>Super Agent</Modal.Title>
                     </Modal.Header>
