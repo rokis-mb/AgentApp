@@ -72,7 +72,7 @@ const CreateAgentForm = () => {
                     <Col md={4}><Form.Label>Password</Form.Label><Input type="password" onChange={(e) => setAgent({ ...agent, Password: e.target.value })} /></Col>
                     <Col md={4}><Form.Label>Address</Form.Label><Input type="text" onChange={(e) => setAgent({ ...agent, Address: e.target.value })} /></Col>
                     <Col md={4}><Form.Label>District</Form.Label>
-                        <DropDown options={options} onChange={(e) => setAgent({ ...agent, District: e.target.value })} />
+                        <DropDown info="Select a District" options={options} onChange={(e) => setAgent({ ...agent, District: e.target.value })} />
                     </Col>
                 </Row>
 

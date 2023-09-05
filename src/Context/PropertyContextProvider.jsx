@@ -6,47 +6,47 @@ const PropertyContextProvider = (props) => {
 
     const [property, setProperty] = useState({
         AuthCode: "r1d3r",
-        UserID: "",
-        Flag: "",
-        MemID: "",
+        UserID: "3",
+        Flag: "i",
+        MemID: "3",
         MemType: "",
-        PropertyNo: "",
-        Title: "",
-        Slug: "",
-        Description: "",
-        Tags: "",
-        Purpose: "",
-        PropType: "",
-        Category: "",
-        YtUrl: "",
+        PropertyNo: "", //done
+        Title: "",  //done
+        Slug: "",  //done
+        Description: "",  //done
+        Tags: "",  //done
+        Purpose: "",  //done
+        PropType: "",  //done
+        Category: "",  //done
+        YtUrl: "",  //done
         TypeID: "",
         ShopID: "",
         IsFurnished: "",
-        Dining: "",
-        Kitchen: "",
-        BedRoom: "",
-        BathRoom: "",
-        Hall: "",
-        TotalFloor: "",
-        Parking: "",
+        Dining: "",  //done
+        Kitchen: "",  //done
+        BedRoom: "",  //done
+        BathRoom: "",  //done
+        Hall: "",  //done
+        TotalFloor: "",  //done
+        Parking: "",  //done
         Price: "",
         PricePer: "",
-        IsNeg: "",
-        IsFeatured: "",
+        IsNeg: "",  //done
+        IsFeatured: "",  //done
         PropStatus: "",
-        Address: "",
-        District: "",
-        Latitude: "",
-        Longitude: "",
-        TotalArea: "",
-        TotalAreaUnit: "",
-        BuiltYear: "",
-        RoadAccess: "",
-        RoadAccessUnit: "",
-        PropertyFacing: "",
-        Contact: "",
+        Address: "",  //done
+        District: "",  //done
+        Latitude: "",  //done
+        Longitude: "",  //done
+        TotalArea: "",  //done
+        TotalAreaUnit: "",  //done
+        BuiltYear: "",  //done
+        RoadAccess: "",  //done
+        RoadAccessUnit: "",  //done
+        PropertyFacing: "",  //done
+        Contact: "",  //done
         OwnerID: "",
-        Images: ""
+        Images: []  //done
     })
 
     const [propertyInfo, setPropertyInfo] = useState({

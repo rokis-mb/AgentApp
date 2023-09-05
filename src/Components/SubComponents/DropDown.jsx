@@ -5,7 +5,7 @@ const DropDown = (props) => {
     return (
         <div>
             <select onChange={props.onChange} defaultValue={props.defaultValue} className='my-dropdown'>
-                <option value=''>-- Select a district --</option>
+                <option value=''>-- {props.info} --</option>
                 {props.options.map((option) => (
                     <option
                         value={option.value}

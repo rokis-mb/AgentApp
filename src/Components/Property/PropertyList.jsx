@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Modal from 'react-bootstrap/Modal';
 import { useContext, useState } from 'react'
+import CreatePropertyForm from './CreatePropertyForm';
 
 const PropertyList = () => {
 
@@ -24,7 +25,24 @@ const PropertyList = () => {
 
     function handleAddButton() {
         handleClose();
-        // createAgent(property);
+        createProperty(property);
+    }
+
+    async function createProperty(data) {
+        try {
+
+            await fetch("https://testing.esnep.com/happyhomes/api/admin/property", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Signature": "p0m76"
+                },
+                body: JSON.stringify(data)
+            })
+        }
+        catch (error) {
+            console.log(error)
+        }
     }
 
     const { sidebarOpen } = useSidebarContext();
@@ -50,14 +68,14 @@ const PropertyList = () => {
                 </Container>
                 <Modal show={show} onHide={handleClose} backdrop='static' keyboard={false}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Super Agent</Modal.Title>
+                        <Modal.Title>Create Property</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        Hello
+                        <CreatePropertyForm/>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button className='addBtn' onClick={handleAddButton}>
-                            Add Agent
+                            Add Property
                         </Button>
                     </Modal.Footer>
                 </Modal>
