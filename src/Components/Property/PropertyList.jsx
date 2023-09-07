@@ -9,11 +9,15 @@ import Col from 'react-bootstrap/Col';
 import Modal from 'react-bootstrap/Modal';
 import { useContext, useState } from 'react'
 import CreatePropertyForm from './CreatePropertyForm';
+import FilterDropDown from '../SubComponents/FilterDropDown';
 
 const PropertyList = () => {
 
     const [show, setShow] = useState(false);
     const { property } = useContext(PropertyContext);
+
+    const [selectedPurposeFilter, setSelectedPurposeFilter] = useState("-1")
+    const [selectedTypeFilter, setSelectedTypeFilter] = useState("-1")
 
     const handleClose = () => {
         setShow(false)
@@ -27,6 +31,18 @@ const PropertyList = () => {
         handleClose();
         createProperty(property);
     }
+
+    const purposeOptions = [
+        { name: 'All', value: '-1' },
+        { name: 'Rent', value: 'R' },
+        { name: 'Sale', value: 'S' },
+    ]
+
+    const TypeOptions = [
+        { name: 'All', value: '-1' },
+        { name: 'Residential', value: 'R' },
+        { name: 'Commercial', value: 'C' },
+    ]
 
     async function createProperty(data) {
         try {
@@ -60,7 +76,15 @@ const PropertyList = () => {
                         </Col>
                     </Row>
                     <hr />
-                    <Row className='justify-content-md-end'>
+                    <Row className='justify-content-md-end align-items-end'>
+                        <Col sm='auto' className='mb-2'>
+                            Purpose:
+                            <FilterDropDown onChange={(e) => { setSelectedPurposeFilter(e.target.value) }} options={purposeOptions} value={selectedPurposeFilter} />
+                        </Col>
+                        <Col sm='auto' className='mb-2'>
+                            Type:
+                            <FilterDropDown onChange={(e) => { setSelectedTypeFilter(e.target.value) }} options={TypeOptions} value={selectedTypeFilter} />
+                        </Col>
                         <Col sm='auto' className='mb-2'>
                             <SearchBox />
                         </Col>
@@ -71,7 +95,7 @@ const PropertyList = () => {
                         <Modal.Title>Create Property</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <CreatePropertyForm/>
+                        <CreatePropertyForm />
                     </Modal.Body>
                     <Modal.Footer>
                         <Button className='addBtn' onClick={handleAddButton}>
@@ -79,7 +103,7 @@ const PropertyList = () => {
                         </Button>
                     </Modal.Footer>
                 </Modal>
-                <PropertyTable />
+                <PropertyTable typeFilter={selectedTypeFilter} purposeFilter={selectedPurposeFilter} />
             </div>
         </div>
     )

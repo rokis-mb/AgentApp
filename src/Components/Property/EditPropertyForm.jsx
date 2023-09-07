@@ -391,7 +391,7 @@ const EditPropertyForm = ({ property }) => {
                 </Row>
 
                 <Row className='mt-2'>
-                    <Col md={3}><Form.Label>Road Access</Form.Label><Input defaultValue={propertyData?.Parking} type="text" onChange={(e) => setUpdateProperty({ ...property, RoadAccess: e.target.value })} /></Col>
+                    <Col md={3}><Form.Label>Road Access</Form.Label><Input defaultValue={propertyData?.RoadAccess} type="text" onChange={(e) => setUpdateProperty({ ...property, RoadAccess: e.target.value })} /></Col>
                     <Col md={3}><Form.Label></Form.Label><DropDown defaultValue={propertyData?.RoadAccessUnit} options={roadAccess} info="Road Access Unit" onChange={(e) => setUpdateProperty({ ...property, RoadAccessUnit: e.target.value })} /></Col>
                     <Col md={6}><Form.Label></Form.Label><DropDown defaultValue={propertyData?.PropertyFacing} options={propertyFacing} info="Select Property Facing" onChange={(e) => setUpdateProperty({ ...property, PropertyFacing: e.target.value })} /></Col>
                 </Row>
@@ -401,14 +401,14 @@ const EditPropertyForm = ({ property }) => {
                 </Row>
 
                 <Row className='mt-2'>
-                    <Col md={2} className='d-flex align-items-center'>
+                    <Col md={2} className='d-flex align-items-center '>
                         <input
                             id='featured'
                             type="checkbox"
                             checked={property.IsFeatured}
                             onChange={handleFeaturedChange}
                         />
-                        <Form.Label htmlFor='featured'>Featured</Form.Label>
+                        <Form.Label htmlFor='featured'>&nbsp; Featured</Form.Label>
                     </Col>
                     <Col md={2} className='d-flex align-items-center'>
                         <input
@@ -417,7 +417,7 @@ const EditPropertyForm = ({ property }) => {
                             checked={property.IsNeg}
                             onChange={handleNegotiableChange}
                         />
-                        <Form.Label htmlFor='negotiable'>Negotiable</Form.Label>
+                        <Form.Label htmlFor='negotiable'>&nbsp; Negotiable</Form.Label>
                     </Col>
                     <Col md={2} className='d-flex align-items-center'>
                         <input
@@ -426,7 +426,7 @@ const EditPropertyForm = ({ property }) => {
                             checked={property.PropStatus}
                             onChange={handlePropStatusChange}
                         />
-                        <Form.Label htmlFor='propStatus'>PropStatus</Form.Label>
+                        <Form.Label htmlFor='propStatus'>&nbsp; PropStatus</Form.Label>
                     </Col>
                 </Row>
 

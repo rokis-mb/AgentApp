@@ -359,7 +359,7 @@ const CreatePropertyForm = () => {
                             checked={property.IsFeatured}
                             onChange={handleFeaturedChange}
                         />
-                        <Form.Label htmlFor='featured'>Featured</Form.Label>
+                        <Form.Label htmlFor='featured'>&nbsp;Featured</Form.Label>
                     </Col>
                     <Col md={2} className='d-flex align-items-center'>
                         <input
@@ -368,7 +368,7 @@ const CreatePropertyForm = () => {
                             checked={property.IsNeg}
                             onChange={handleNegotiableChange}
                         />
-                        <Form.Label htmlFor='negotiable'>Negotiable</Form.Label>
+                        <Form.Label htmlFor='negotiable'>&nbsp;Negotiable</Form.Label>
                     </Col>
                     <Col md={2} className='d-flex align-items-center'>
                         <input
@@ -377,7 +377,7 @@ const CreatePropertyForm = () => {
                             checked={property.PropStatus}
                             onChange={handlePropStatusChange}
                         />
-                        <Form.Label htmlFor='propStatus'>PropStatus</Form.Label>
+                        <Form.Label htmlFor='propStatus'>&nbsp;PropStatus</Form.Label>
                     </Col>
                 </Row>
 

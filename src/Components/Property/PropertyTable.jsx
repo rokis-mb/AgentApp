@@ -8,7 +8,7 @@ import { PropertyContext } from '../../Context/PropertyContextProvider';
 import EditPropertyForm from './EditPropertyForm';
 
 
-const PropertyTable = () => {
+const PropertyTable = ({ typeFilter, purposeFilter }) => {
 
     const [propertyList, setPropertyList] = useState([])
     const [showDelete, setShowDelete] = useState(false)
@@ -139,6 +139,16 @@ const PropertyTable = () => {
         }
     }
 
+    const filteredPropertyList = propertyList.filter((property) => {
+        if (
+            (typeFilter === "-1" || property.Type === typeFilter) &&
+            (purposeFilter === "-1" || property.Purpose === purposeFilter)
+        ) {
+            return true; // Include in the filtered list
+        }
+        return false; // Exclude from the filtered list
+    });
+
     const columns = [
         {
             name: 'S.N',
@@ -205,13 +215,13 @@ const PropertyTable = () => {
                 pagination
                 selectableRows
                 columns={columns}
-                data={propertyList}
+                data={filteredPropertyList} // Use the filtered list here
                 customStyles={customStyles}
             />
 
             <Modal show={showEdit} onHide={handleEditClose} backdrop='static' size='sm' keyboard={false}>
                 <Modal.Header closeButton className='modal-header'>
-                    <Modal.Title>Edit Agent</Modal.Title>
+                    <Modal.Title>Edit Property</Modal.Title>
                 </Modal.Header >
                 <Modal.Body>
                     <EditPropertyForm property={propertyInfo} />
