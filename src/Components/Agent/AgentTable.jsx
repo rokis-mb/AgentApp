@@ -119,7 +119,7 @@ const AgentTable = () => {
                     }),
                 })
                 const data = await res.json();
-                console.log(btoa(data.Values[0].Image))
+                console.log(data)
                 setAgentInfo(data)
                 
             } catch (error) {

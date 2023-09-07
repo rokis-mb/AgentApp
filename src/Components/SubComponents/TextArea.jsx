@@ -4,7 +4,9 @@ import '../../CSS/TextArea.css'
 const TextArea = (props) => {
     return (
         <div className='textarea-container'>
-            <textarea className='my-textarea' name={props.name} rows={props.rows} onChange={props.onChnage}> </textarea>
+            <textarea className='my-textarea' name={props.name} rows={props.rows} onChange={props.onChange}>
+                {props.defaultValue}
+            </textarea>
         </div>
     )
 }

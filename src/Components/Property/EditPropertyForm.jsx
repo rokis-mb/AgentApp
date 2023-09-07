@@ -11,10 +11,11 @@ import { PropertyContext } from '../../Context/PropertyContextProvider';
 import ClearIcon from '@mui/icons-material/Clear';
 import '../../CSS/CreatePropertyForm.css';
 
+const EditPropertyForm = ({ property }) => {
+    const { updateProperty, setUpdateProperty } = useContext(PropertyContext);
 
-
-const CreatePropertyForm = () => {
-    const { setProperty, property } = useContext(PropertyContext);
+    const { Values: propertyValues } = property || {};
+    const [propertyData] = propertyValues || [];
 
     const [selectedImages, setSelectedImages] = useState([]);
     const [selectedBase64, setSelectedBase64] = useState('');
@@ -25,14 +26,59 @@ const CreatePropertyForm = () => {
     const [slug, setSlug] = useState('');
 
     useEffect(() => {
+        setUpdateProperty(
+            {
+                AuthCode: "r1d3r",
+                UserID: "3",
+                Flag: "U",
+                MemID: propertyData?.MemID,
+                MemType: propertyData?.MemType,
+                PropertyNo: propertyData?.PropertyNo,
+                Title: propertyData?.Title,
+                Slug: propertyData?.Slug,
+                Description: propertyData?.Description,
+                Tags: propertyData?.Tags,
+                Purpose: propertyData?.Purpose,
+                PropType: propertyData?.PropType,
+                Category: propertyData?.Category,
+                YtUrl: propertyData?.YtUrl,
+                TypeID: propertyData?.TypeID,
+                ShopID: propertyData?.ShopID,
+                IsFurnished: propertyData?.IsFurnished,
+                Dining: propertyData?.Dining,
+                Kitchen: propertyData?.Kitchen,
+                BedRoom: propertyData?.BedRoom,
+                BathRoom: propertyData?.BathRoom,
+                Hall: propertyData?.Hall,
+                TotalFloor: propertyData?.TotalFloor,
+                Parking: propertyData?.Parking,
+                Price: propertyData?.Price,
+                PricePer: propertyData?.PricePer,
+                IsNeg: propertyData?.IsNeg,
+                IsFeatured: propertyData?.IsFeatured,
+                PropStatus: propertyData?.PropStatus,
+                Address: propertyData?.Address,
+                District: propertyData?.District,
+                Latitude: propertyData?.Latitude,
+                Longitude: propertyData?.Longitude,
+                TotalArea: propertyData?.TotalArea,
+                TotalAreaUnit: propertyData?.TotalAreaUnit,
+                BuiltYear: propertyData?.BuiltYear,
+                RoadAccess: propertyData?.RoadAccess,
+                RoadAccessUnit: propertyData?.RoadAccessUnit,
+                PropertyFacing: propertyData?.PropertyFacing,
+                Contact: propertyData?.Contact,
+                OwnerID: propertyData?.OwnerID,
+            })
         const generatedSlug = title;
-        setSlug(generatedSlug);
-    }, [title]);
+        setSlug(generatedSlug);;
+    }, [propertyData, setUpdateProperty, title])
+    console.log(updateProperty)
 
     const handlePurposeChange = (e) => {
         const newPurpose = e.target.value;
         setSelectedPurpose(newPurpose);
-        setProperty((prevProperty) => ({
+        setUpdateProperty((prevProperty) => ({
             ...prevProperty,
             Purpose: newPurpose,
         }));
@@ -41,7 +87,7 @@ const CreatePropertyForm = () => {
     const handleTypeChange = (e) => {
         const newType = e.target.value;
         setSelectedType(newType);
-        setProperty((prevProperty) => ({
+        setUpdateProperty((prevProperty) => ({
             ...prevProperty,
             PropType: newType,
         }));
@@ -50,7 +96,7 @@ const CreatePropertyForm = () => {
     const handleCategoryChange = (e) => {
         const newCategory = e.target.value;
         setSelectedCategory(newCategory);
-        setProperty((prevProperty) => ({
+        setUpdateProperty((prevProperty) => ({
             ...prevProperty,
             Category: newCategory,
         }));
@@ -59,7 +105,7 @@ const CreatePropertyForm = () => {
     const handleTitleChange = (e) => {
         const newTitle = e.target.value;
         setTitle(newTitle);
-        setProperty((prevProperty) => ({
+        setUpdateProperty((prevProperty) => ({
             ...prevProperty,
             Title: newTitle,
             Slug: newTitle,
@@ -99,7 +145,7 @@ const CreatePropertyForm = () => {
 
     const handleFeaturedChange = (e) => {
         const isFeatured = e.target.checked;
-        setProperty((prevProperty) => ({
+        setUpdateProperty((prevProperty) => ({
             ...prevProperty,
             IsFeatured: isFeatured,
         }));
@@ -107,7 +153,7 @@ const CreatePropertyForm = () => {
 
     const handleNegotiableChange = (e) => {
         const isNegotiable = e.target.checked;
-        setProperty((prevProperty) => ({
+        setUpdateProperty((prevProperty) => ({
             ...prevProperty,
             IsNeg: isNegotiable,
         }));
@@ -115,7 +161,7 @@ const CreatePropertyForm = () => {
 
     const handlePropStatusChange = (e) => {
         const propStatus = e.target.checked;
-        setProperty((prevProperty) => ({
+        setUpdateProperty((prevProperty) => ({
             ...prevProperty,
             PropStatus: propStatus,
         }));
@@ -163,9 +209,10 @@ const CreatePropertyForm = () => {
                         <Form.Label>Property No.</Form.Label>
                         <Input
                             className='my-form-control'
+                            defaultValue={propertyData?.PropertyNo}
                             type="text"
                             onChange={(e) =>
-                                setProperty({
+                                setUpdateProperty({
                                     ...property,
                                     PropertyNo: e.target.value,
                                 })
@@ -175,9 +222,10 @@ const CreatePropertyForm = () => {
                     <Col md={6}>
                         <Form.Label>Built Year</Form.Label>
                         <Input
+                        defaultValue={propertyData?.BuiltYear}
                             type="text"
                             onChange={(e) =>
-                                setProperty({
+                                setUpdateProperty({
                                     ...property,
                                     BuiltYear: e.target.value,
                                 })
@@ -189,7 +237,7 @@ const CreatePropertyForm = () => {
                 <Row className='mt-2'>
                     <Col md={12}>
                         <Form.Label>Title</Form.Label>
-                        <Input type="text" onChange={handleTitleChange} />
+                        <Input type="text" defaultValue={propertyData?.Title} onChange={handleTitleChange} />
                     </Col>
                 </Row>
 
@@ -205,9 +253,10 @@ const CreatePropertyForm = () => {
                         <Form.Label>Description</Form.Label>
                         <TextArea
                             name="Description"
+                            defaultValue={propertyData?.Description}
                             rows='3'
                             onChange={(e) =>
-                                setProperty({
+                                setUpdateProperty({
                                     ...property,
                                     Description: e.target.value,
                                 })
@@ -308,47 +357,47 @@ const CreatePropertyForm = () => {
                 </Row>
 
                 <Row className='mt-2'>
-                    <Col md={12}><Form.Label>YtUrl</Form.Label><Input className='my-form-control' type="text" onChange={(e) => setProperty({ ...property, YtUrl: e.target.value })} /></Col>
+                    <Col md={12}><Form.Label>YtUrl</Form.Label><Input defaultValue={propertyData?.YtUrl} className='my-form-control' type="text" onChange={(e) => setUpdateProperty({ ...property, YtUrl: e.target.value })} /></Col>
                 </Row>
 
                 <Row className='mt-2'>
-                    <Col md={2}><Form.Label>Dining</Form.Label><Input className='my-form-control' type="number" onChange={(e) => setProperty({ ...property, Dining: e.target.value })} /></Col>
-                    <Col md={2}><Form.Label>Kitchen</Form.Label><Input type="number" onChange={(e) => setProperty({ ...property, Kitchen: e.target.value })} /></Col>
-                    <Col md={2}><Form.Label>BedRoom</Form.Label><Input className='my-form-control' type="number" onChange={(e) => setProperty({ ...property, BedRoom: e.target.value })} /></Col>
-                    <Col md={2}><Form.Label>BathRoom</Form.Label><Input type="number" onChange={(e) => setProperty({ ...property, BathRoom: e.target.value })} /></Col>
-                    <Col md={2}><Form.Label>Hall</Form.Label><Input type="number" onChange={(e) => setProperty({ ...property, Hall: e.target.value })} /></Col>
+                    <Col md={2}><Form.Label>Dining</Form.Label><Input defaultValue={propertyData?.Dining} className='my-form-control' type="number" onChange={(e) => setUpdateProperty({ ...property, Dining: e.target.value })} /></Col>
+                    <Col md={2}><Form.Label>Kitchen</Form.Label><Input defaultValue={propertyData?.Kitchen} type="number" onChange={(e) => setUpdateProperty({ ...property, Kitchen: e.target.value })} /></Col>
+                    <Col md={2}><Form.Label>BedRoom</Form.Label><Input defaultValue={propertyData?.BedRoom} className='my-form-control' type="number" onChange={(e) => setUpdateProperty({ ...property, BedRoom: e.target.value })} /></Col>
+                    <Col md={2}><Form.Label>BathRoom</Form.Label><Input defaultValue={propertyData?.BathRoom} type="number" onChange={(e) => setUpdateProperty({ ...property, BathRoom: e.target.value })} /></Col>
+                    <Col md={2}><Form.Label>Hall</Form.Label><Input defaultValue={propertyData?.Hall} type="number" onChange={(e) => setUpdateProperty({ ...property, Hall: e.target.value })} /></Col>
                 </Row>
 
                 <Row className='mt-2'>
-                    <Col md={6}><Form.Label>Total Floor</Form.Label><Input className='my-form-control' type="text" onChange={(e) => setProperty({ ...property, TotalFloor: e.target.value })} /></Col>
-                    <Col md={6}><Form.Label>Parking</Form.Label><Input type="text" onChange={(e) => setProperty({ ...property, Parking: e.target.value })} /></Col>
+                    <Col md={6}><Form.Label>Total Floor</Form.Label><Input defaultValue={propertyData?.TotalFloor} className='my-form-control' type="text" onChange={(e) => setUpdateProperty({ ...property, TotalFloor: e.target.value })} /></Col>
+                    <Col md={6}><Form.Label>Parking</Form.Label><Input defaultValue={propertyData?.Parking} type="text" onChange={(e) => setUpdateProperty({ ...property, Parking: e.target.value })} /></Col>
                 </Row>
 
                 <Row className='mt-2'>
-                    <Col md={6}><Form.Label>Address</Form.Label><Input className='my-form-control' type="text" onChange={(e) => setProperty({ ...property, Address: e.target.value })} /></Col>
-                    <Col md={6}><Form.Label>Select District</Form.Label><DropDown options={districts} info="Select a district" onChange={(e) => setProperty({ ...property, District: e.target.value })} /></Col>
+                    <Col md={6}><Form.Label>Address</Form.Label><Input defaultValue={propertyData?.Address} className='my-form-control' type="text" onChange={(e) => setUpdateProperty({ ...property, Address: e.target.value })} /></Col>
+                    <Col md={6}><Form.Label>Select District</Form.Label><DropDown defaultValue={propertyData?.District} options={districts} info="Select a district" onChange={(e) => setUpdateProperty({ ...property, District: e.target.value })} /></Col>
                 </Row>
 
                 <Row className='mt-2'>
-                    <Col md={6}><Form.Label>Latitude</Form.Label><Input className='my-form-control' type="text" onChange={(e) => setProperty({ ...property, Latitude: e.target.value })} /></Col>
-                    <Col md={6}><Form.Label>Longitude</Form.Label><Input type="text" onChange={(e) => setProperty({ ...property, Longitude: e.target.value })} /></Col>
+                    <Col md={6}><Form.Label>Latitude</Form.Label><Input defaultValue={propertyData?.Latitude} className='my-form-control' type="text" onChange={(e) => setUpdateProperty({ ...property, Latitude: e.target.value })} /></Col>
+                    <Col md={6}><Form.Label>Longitude</Form.Label><Input defaultValue={propertyData?.Longitude} type="text" onChange={(e) => setUpdateProperty({ ...property, Longitude: e.target.value })} /></Col>
                 </Row>
 
                 <Row className='mt-2'>
-                    <Col md={3}><Form.Label>Total Area</Form.Label><Input className='my-form-control' type="text" onChange={(e) => setProperty({ ...property, TotalArea: e.target.value })} /></Col>
-                    <Col md={3}><Form.Label></Form.Label><DropDown options={totalAreaUnit} info="Select unit" onChange={(e) => setProperty({ ...property, TotalAreaUnit: e.target.value })} /></Col>
-                    <Col md={3}><Form.Label>Price</Form.Label><DropDown options={pricePer} info="Price Per" onChange={(e) => setProperty({ ...property, PricePer: e.target.value })} /></Col>
-                    <Col md={3}><Form.Label></Form.Label><Input className='my-form-control' type="number" onChange={(e) => setProperty({ ...property, Price: e.target.value })} /></Col>
+                    <Col md={3}><Form.Label>Total Area</Form.Label><Input defaultValue={propertyData?.TotalArea} className='my-form-control' type="text" onChange={(e) => setUpdateProperty({ ...property, TotalArea: e.target.value })} /></Col>
+                    <Col md={3}><Form.Label></Form.Label><DropDown defaultValue={propertyData?.TotalAreaUnit} options={totalAreaUnit} info="Select unit" onChange={(e) => setUpdateProperty({ ...property, TotalAreaUnit: e.target.value })} /></Col>
+                    <Col md={3}><Form.Label>Price</Form.Label><DropDown defaultValue={propertyData?.PricePer} options={pricePer} info="Price Per" onChange={(e) => setUpdateProperty({ ...property, PricePer: e.target.value })} /></Col>
+                    <Col md={3}><Form.Label></Form.Label><Input defaultValue={propertyData?.Price} className='my-form-control' type="number" onChange={(e) => setUpdateProperty({ ...property, Price: e.target.value })} /></Col>
                 </Row>
 
                 <Row className='mt-2'>
-                    <Col md={3}><Form.Label>Road Access</Form.Label><Input type="text" onChange={(e) => setProperty({ ...property, RoadAccess: e.target.value })} /></Col>
-                    <Col md={3}><Form.Label></Form.Label><DropDown options={roadAccess} info="Road Access Unit" onChange={(e) => setProperty({ ...property, RoadAccessUnit: e.target.value })} /></Col>
-                    <Col md={6}><Form.Label></Form.Label><DropDown options={propertyFacing} info="Select Property Facing" onChange={(e) => setProperty({ ...property, PropertyFacing: e.target.value })} /></Col>
+                    <Col md={3}><Form.Label>Road Access</Form.Label><Input defaultValue={propertyData?.Parking} type="text" onChange={(e) => setUpdateProperty({ ...property, RoadAccess: e.target.value })} /></Col>
+                    <Col md={3}><Form.Label></Form.Label><DropDown defaultValue={propertyData?.RoadAccessUnit} options={roadAccess} info="Road Access Unit" onChange={(e) => setUpdateProperty({ ...property, RoadAccessUnit: e.target.value })} /></Col>
+                    <Col md={6}><Form.Label></Form.Label><DropDown defaultValue={propertyData?.PropertyFacing} options={propertyFacing} info="Select Property Facing" onChange={(e) => setUpdateProperty({ ...property, PropertyFacing: e.target.value })} /></Col>
                 </Row>
 
                 <Row className='mt-2'>
-                    <Col md={12}><Form.Label>Contact</Form.Label><Input type="number" onChange={(e) => setProperty({ ...property, Contact: e.target.value })} /></Col>
+                    <Col md={12}><Form.Label>Contact</Form.Label><Input defaultValue={propertyData?.Contact} type="number" onChange={(e) => setUpdateProperty({ ...property, Contact: e.target.value })} /></Col>
                 </Row>
 
                 <Row className='mt-2'>
@@ -434,6 +483,4 @@ const CreatePropertyForm = () => {
     )
 }
 
-export default CreatePropertyForm;
-
-
+export default EditPropertyForm;

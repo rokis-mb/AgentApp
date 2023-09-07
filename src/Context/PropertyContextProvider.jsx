@@ -19,8 +19,8 @@ const PropertyContextProvider = (props) => {
         PropType: "",  //done
         Category: "",  //done
         YtUrl: "",  //done
-        TypeID: "",
-        ShopID: "",
+        TypeID: "1",  //done
+        ShopID: "1",  //done
         IsFurnished: "",
         Dining: "",  //done
         Kitchen: "",  //done
@@ -29,11 +29,11 @@ const PropertyContextProvider = (props) => {
         Hall: "",  //done
         TotalFloor: "",  //done
         Parking: "",  //done
-        Price: "",
-        PricePer: "",
+        Price: "",  //done
+        PricePer: "",  //done
         IsNeg: "",  //done
         IsFeatured: "",  //done
-        PropStatus: "",
+        PropStatus: "",  //done
         Address: "",  //done
         District: "",  //done
         Latitude: "",  //done
@@ -45,7 +45,54 @@ const PropertyContextProvider = (props) => {
         RoadAccessUnit: "",  //done
         PropertyFacing: "",  //done
         Contact: "",  //done
-        OwnerID: "",
+        OwnerID: "1",  //done
+        Images: [{
+            Values: ""
+        }]  //done
+    })
+
+    const [updateProperty, setUpdateProperty] = useState({
+        AuthCode: "r1d3r",
+        UserID: "3",
+        Flag: "U",
+        MemID: "",
+        MemType: "",
+        PropertyNo: "", //done
+        Title: "",  //done
+        Slug: "",  //done
+        Description: "",  //done
+        Tags: "",  //done
+        Purpose: "",  //done
+        PropType: "",  //done
+        Category: "",  //done
+        YtUrl: "",  //done
+        TypeID: "",  //done
+        ShopID: "",  //done
+        IsFurnished: "",
+        Dining: "",  //done
+        Kitchen: "",  //done
+        BedRoom: "",  //done
+        BathRoom: "",  //done
+        Hall: "",  //done
+        TotalFloor: "",  //done
+        Parking: "",  //done
+        Price: "",  //done
+        PricePer: "",  //done
+        IsNeg: "",  //done
+        IsFeatured: "",  //done
+        PropStatus: "",  //done
+        Address: "",  //done
+        District: "",  //done
+        Latitude: "",  //done
+        Longitude: "",  //done
+        TotalArea: "",  //done
+        TotalAreaUnit: "",  //done
+        BuiltYear: "",  //done
+        RoadAccess: "",  //done
+        RoadAccessUnit: "",  //done
+        PropertyFacing: "",  //done
+        Contact: "",  //done
+        OwnerID: "",  //done
         Images: []  //done
     })
 
@@ -94,7 +141,7 @@ const PropertyContextProvider = (props) => {
     })
 
     const contextValue = {
-        propertyInfo, setPropertyInfo, property, setProperty
+        propertyInfo, setPropertyInfo, property, setProperty, updateProperty, setUpdateProperty
     };
 
     return (

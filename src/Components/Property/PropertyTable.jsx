@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import DataTable from 'react-data-table-component'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 import EditIcon from '@mui/icons-material/Edit';
+import { PropertyContext } from '../../Context/PropertyContextProvider';
+import EditPropertyForm from './EditPropertyForm';
 
 
 const PropertyTable = () => {
@@ -11,6 +13,8 @@ const PropertyTable = () => {
     const [propertyList, setPropertyList] = useState([])
     const [showDelete, setShowDelete] = useState(false)
     const [selectedProperty, setSelectedProperty] = useState();
+    const { updateProperty, propertyInfo, setPropertyInfo } = useContext(PropertyContext);
+    const [showEdit, setShowEdit] = useState(false);
 
 
     const fetchProperty = async () => {
@@ -59,6 +63,59 @@ const PropertyTable = () => {
     function handleDelButtonClick() {
         handleDelClose();
         removeProperty(selectedProperty);
+    }
+
+    const handleEditClose = () => {
+        setShowEdit(false)
+        setSelectedProperty(null)
+    }
+
+    const handleEditOpen = (property) => {
+        async function getPropertyInfo() {
+            try {
+                const res = await fetch("https://testing.esnep.com/happyhomes/api/admin/property", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Signature": "p0m76"
+                    },
+                    body: JSON.stringify({
+                        "UserID": "-1",
+                        "AuthCode": "r1d3r",
+                        "Flag": "SI",
+                        "PropertyID": property.PropertyID + ""
+                    }),
+                })
+                const data = await res.json();
+                setPropertyInfo(data)
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        getPropertyInfo()
+        // setSelectedProperty(Property)
+        setShowEdit(true)
+    }
+
+    function handleEditButtonClick() {
+        handleEditClose();
+        updatePropertyData(updateProperty);
+    }
+
+    async function updatePropertyData(data) {
+        try {
+            await fetch("https://testing.esnep.com/happyhomes/api/admin/property", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Signature": "p0m76"
+                },
+                body: JSON.stringify(data)
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     async function removeProperty(property) {
@@ -117,7 +174,7 @@ const PropertyTable = () => {
             width: "8rem", // Adjust the width as needed
             cell: (row) => (
                 <div className='d-flex'>
-                    <button  title="Edit" className="btn bg-transparent"><EditIcon style={{ color: '#0F52BA', border: "0px!important" }} /></button>
+                    <button onClick={() => { handleEditOpen(row) }} title="Edit" className="btn bg-transparent"><EditIcon style={{ color: '#0F52BA', border: "0px!important" }} /></button>
                     <button onClick={() => handleDelOpen(row)} title="Remove" className="btn bg-transparent"><DeleteForeverRoundedIcon style={{ color: '#0F52BA', border: "0px!important" }} /></button>
                 </div>
             )
@@ -151,6 +208,22 @@ const PropertyTable = () => {
                 data={propertyList}
                 customStyles={customStyles}
             />
+
+            <Modal show={showEdit} onHide={handleEditClose} backdrop='static' size='sm' keyboard={false}>
+                <Modal.Header closeButton className='modal-header'>
+                    <Modal.Title>Edit Agent</Modal.Title>
+                </Modal.Header >
+                <Modal.Body>
+                    <EditPropertyForm property={propertyInfo} />
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={handleEditButtonClick}>
+                        Edit
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
+
             <Modal show={showDelete} onHide={handleDelClose} backdrop='static' keyboard={false}>
                 <Modal.Header closeButton>
                     <Modal.Title>Delete Property</Modal.Title>

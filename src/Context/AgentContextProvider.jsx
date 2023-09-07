@@ -35,7 +35,7 @@ const AgentContextProvider = (props) => {
         UserID: "",
         FullName: "",
         Image: "",
-        Address: "k",
+        Address: "",
         District: "",
         StarGrading: "",
         Academic: "",
