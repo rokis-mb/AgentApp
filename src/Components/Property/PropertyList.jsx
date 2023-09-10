@@ -17,7 +17,7 @@ const PropertyList = () => {
     const { property } = useContext(PropertyContext);
 
     const [selectedPurposeFilter, setSelectedPurposeFilter] = useState("-1")
-    const [selectedTypeFilter, setSelectedTypeFilter] = useState("-1")
+    const [selectedCategoryFilter, setSelectedCategoryFilter] = useState("-1")
 
     const handleClose = () => {
         setShow(false)
@@ -38,10 +38,14 @@ const PropertyList = () => {
         { name: 'Sale', value: 'S' },
     ]
 
-    const TypeOptions = [
+    const CategoryOptions = [
         { name: 'All', value: '-1' },
-        { name: 'Residential', value: 'R' },
-        { name: 'Commercial', value: 'C' },
+        { name: 'House', value: 'H' },
+        { name: 'Land', value: 'L' },
+        { name: 'Flat', value: 'F' },
+        { name: 'Office', value: 'O' },
+        { name: 'Shutter', value: 'S' },
+        { name: 'Apartment', value: 'A' },
     ]
 
     async function createProperty(data) {
@@ -82,8 +86,8 @@ const PropertyList = () => {
                             <FilterDropDown onChange={(e) => { setSelectedPurposeFilter(e.target.value) }} options={purposeOptions} value={selectedPurposeFilter} />
                         </Col>
                         <Col sm='auto' className='mb-2'>
-                            Type:
-                            <FilterDropDown onChange={(e) => { setSelectedTypeFilter(e.target.value) }} options={TypeOptions} value={selectedTypeFilter} />
+                            Category:
+                            <FilterDropDown onChange={(e) => { setSelectedCategoryFilter(e.target.value) }} options={CategoryOptions} value={selectedCategoryFilter} />
                         </Col>
                         <Col sm='auto' className='mb-2'>
                             <SearchBox />
@@ -103,7 +107,7 @@ const PropertyList = () => {
                         </Button>
                     </Modal.Footer>
                 </Modal>
-                <PropertyTable typeFilter={selectedTypeFilter} purposeFilter={selectedPurposeFilter} />
+                <PropertyTable categoryFilter={selectedCategoryFilter} purposeFilter={selectedPurposeFilter} />
             </div>
         </div>
     )

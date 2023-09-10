@@ -20,14 +20,14 @@ const PropertyContextProvider = (props) => {
         Category: "",  //done
         YtUrl: "",  //done
         TypeID: "1",  //done
-        ShopID: "1",  //done
+        // ShopID: "1",  done
         IsFurnished: "",
-        Dining: "",  //done
-        Kitchen: "",  //done
-        BedRoom: "",  //done
-        BathRoom: "",  //done
-        Hall: "",  //done
-        TotalFloor: "",  //done
+        Dining: 0,  //done
+        Kitchen: 0,  //done
+        BedRoom: 0,  //done
+        BathRoom: 0,  //done
+        Hall: 0,  //done
+        TotalFloor: 0,  //done
         Parking: "",  //done
         Price: "",  //done
         PricePer: "",  //done
@@ -35,7 +35,7 @@ const PropertyContextProvider = (props) => {
         IsFeatured: "",  //done
         PropStatus: "",  //done
         Address: "",  //done
-        District: "",  //done
+        District: 0,  //done
         Latitude: "",  //done
         Longitude: "",  //done
         TotalArea: "",  //done
@@ -67,14 +67,14 @@ const PropertyContextProvider = (props) => {
         Category: "",  //done
         YtUrl: "",  //done
         TypeID: "",  //done
-        ShopID: "",  //done
+        // ShopID: "",  done
         IsFurnished: "",
-        Dining: "",  //done
-        Kitchen: "",  //done
-        BedRoom: "",  //done
-        BathRoom: "",  //done
-        Hall: "",  //done
-        TotalFloor: "",  //done
+        Dining: 0,  //done
+        Kitchen: 0,  //done
+        BedRoom: 0,  //done
+        BathRoom: 0,  //done
+        Hall: 0,  //done
+        TotalFloor: 0,  //done
         Parking: "",  //done
         Price: "",  //done
         PricePer: "",  //done
@@ -82,7 +82,7 @@ const PropertyContextProvider = (props) => {
         IsFeatured: "",  //done
         PropStatus: "",  //done
         Address: "",  //done
-        District: "",  //done
+        District: 0,  //done
         Latitude: "",  //done
         Longitude: "",  //done
         TotalArea: "",  //done
@@ -108,7 +108,7 @@ const PropertyContextProvider = (props) => {
         PropTyp: "",
         Category: "",
         TypeID: "",
-        ShopID: 0,
+        // ShopID: 0,
         Furnished: "",
         Dining: 0,
         Kitchen: 0,

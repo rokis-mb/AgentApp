@@ -8,14 +8,14 @@ import { PropertyContext } from '../../Context/PropertyContextProvider';
 import EditPropertyForm from './EditPropertyForm';
 
 
-const PropertyTable = ({ typeFilter, purposeFilter }) => {
+const PropertyTable = ({ categoryFilter, purposeFilter }) => {
 
     const [propertyList, setPropertyList] = useState([])
     const [showDelete, setShowDelete] = useState(false)
     const [selectedProperty, setSelectedProperty] = useState();
     const { updateProperty, propertyInfo, setPropertyInfo } = useContext(PropertyContext);
     const [showEdit, setShowEdit] = useState(false);
-
+    const [filteredPropertyList, setFilteredPropertyList] = useState([]);
 
     const fetchProperty = async () => {
         try {
@@ -38,7 +38,8 @@ const PropertyTable = ({ typeFilter, purposeFilter }) => {
                 })
             })
             const data = await res.json();
-            setPropertyList(data.Values)
+            setPropertyList(data.Values);
+            setFilteredPropertyList(data.Values)
         }
         catch (error) {
             console.log(error)
@@ -51,7 +52,6 @@ const PropertyTable = ({ typeFilter, purposeFilter }) => {
 
     const handleDelOpen = (property) => {
         setSelectedProperty(property)
-        console.log(selectedProperty)
         setShowDelete(true)
     }
 
@@ -104,6 +104,7 @@ const PropertyTable = ({ typeFilter, purposeFilter }) => {
     }
 
     async function updatePropertyData(data) {
+        console.log(data)
         try {
             await fetch("https://testing.esnep.com/happyhomes/api/admin/property", {
                 method: "POST",
@@ -138,16 +139,30 @@ const PropertyTable = ({ typeFilter, purposeFilter }) => {
             console.log(error)
         }
     }
+    useEffect(() => {
+        
+        setFilteredPropertyList(propertyList.filter((property) => {
 
-    const filteredPropertyList = propertyList.filter((property) => {
-        if (
-            (typeFilter === "-1" || property.Type === typeFilter) &&
-            (purposeFilter === "-1" || property.Purpose === purposeFilter)
-        ) {
-            return true; // Include in the filtered list
-        }
-        return false; // Exclude from the filtered list
-    });
+            if (purposeFilter === "-1" && categoryFilter === "-1") {
+                return true
+            } else if (purposeFilter === property.Purpose.trim() && categoryFilter === "-1") {
+                return true
+            } else if (purposeFilter === '-1' && categoryFilter === property.Category.trim()) {
+                return true
+            } else if (purposeFilter === property.Purpose.trim() && categoryFilter === property.Category.trim()) {
+                return true
+            } else {
+                return false
+            }
+        }));
+    }, [categoryFilter, purposeFilter])
+    // if (
+    //     (typeFilter === "-1" || property.Type === typeFilter) &&
+    //     (purposeFilter === "-1" || property.Purpose === purposeFilter)
+    // ) {
+    //     return true; // Include in the filtered list
+    // }
+    // return false; // Exclude from the filtered list
 
     const columns = [
         {

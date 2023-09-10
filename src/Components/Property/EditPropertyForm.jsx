@@ -19,9 +19,9 @@ const EditPropertyForm = ({ property }) => {
 
     const [selectedImages, setSelectedImages] = useState([]);
     const [selectedBase64, setSelectedBase64] = useState('');
-    const [selectedType, setSelectedType] = useState('R');
-    const [selectedPurpose, setSelectedPurpose] = useState('R');
-    const [selectedCategory, setSelectedCategory] = useState('H');
+    const [selectedType, setSelectedType] = useState('');
+    const [selectedPurpose, setSelectedPurpose] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('');
     const [title, setTitle] = useState('');
     const [slug, setSlug] = useState('');
 
@@ -39,7 +39,7 @@ const EditPropertyForm = ({ property }) => {
                 Description: propertyData?.Description,
                 Tags: propertyData?.Tags,
                 Purpose: propertyData?.Purpose,
-                PropType: propertyData?.PropType,
+                PropType: propertyData?.PropTyp,
                 Category: propertyData?.Category,
                 YtUrl: propertyData?.YtUrl,
                 TypeID: propertyData?.TypeID,
@@ -72,7 +72,7 @@ const EditPropertyForm = ({ property }) => {
             })
         const generatedSlug = title;
         setSlug(generatedSlug);;
-    }, [propertyData, setUpdateProperty, title])
+    }, [propertyData])
     console.log(updateProperty)
 
     const handlePurposeChange = (e) => {
@@ -147,7 +147,7 @@ const EditPropertyForm = ({ property }) => {
         const isFeatured = e.target.checked;
         setUpdateProperty((prevProperty) => ({
             ...prevProperty,
-            IsFeatured: isFeatured,
+            IsFeatured: isFeatured?'Y':'N',
         }));
     };
 
@@ -155,7 +155,7 @@ const EditPropertyForm = ({ property }) => {
         const isNegotiable = e.target.checked;
         setUpdateProperty((prevProperty) => ({
             ...prevProperty,
-            IsNeg: isNegotiable,
+            IsNeg: isNegotiable?'Y':'N',
         }));
     };
 
@@ -163,7 +163,7 @@ const EditPropertyForm = ({ property }) => {
         const propStatus = e.target.checked;
         setUpdateProperty((prevProperty) => ({
             ...prevProperty,
-            PropStatus: propStatus,
+            PropStatus: propStatus?'Y':'N',
         }));
     };
 
@@ -237,14 +237,14 @@ const EditPropertyForm = ({ property }) => {
                 <Row className='mt-2'>
                     <Col md={12}>
                         <Form.Label>Title</Form.Label>
-                        <Input type="text" defaultValue={propertyData?.Title} onChange={handleTitleChange} />
+                        <Input type="text" value={updateProperty?.Title} onChange={handleTitleChange} />
                     </Col>
                 </Row>
 
                 <Row className='mt-2'>
                     <Col md={12}>
                         <Form.Label>Slug</Form.Label>
-                        <Input type="text" value={slug} readOnly='true' />
+                        <Input type="text" value={updateProperty.Title} readOnly='true' />
                     </Col>
                 </Row>
 
@@ -273,14 +273,14 @@ const EditPropertyForm = ({ property }) => {
                                 label='Rent'
                                 name='purpose'
                                 value='R'
-                                checked={selectedPurpose === 'R'}
+                                defaultChecked={updateProperty.Purpose === 'R '}
                                 onChange={handlePurposeChange}
                             />
                             <RadioBtn
                                 label='Sale'
                                 name='purpose'
                                 value='S'
-                                checked={selectedPurpose === 'S'}
+                                defaultChecked={updateProperty.Purpose === 'S '}
                                 onChange={handlePurposeChange}
                             />
                         </Col>
@@ -292,14 +292,14 @@ const EditPropertyForm = ({ property }) => {
                                 label='Residential'
                                 name='type'
                                 value='R'
-                                checked={selectedType === 'R'}
+                                defaultChecked={updateProperty.PropType === 'R '}
                                 onChange={handleTypeChange}
                             />
                             <RadioBtn
                                 label='Commercial'
                                 name='type'
                                 value='C'
-                                checked={selectedType === 'C'}
+                                defaultChecked={updateProperty.PropType === 'C '}
                                 onChange={handleTypeChange}
                             />
                         </Col>
@@ -314,42 +314,42 @@ const EditPropertyForm = ({ property }) => {
                                 label='House'
                                 name='category'
                                 value='H'
-                                checked={selectedCategory === 'H'}
+                                defaultChecked={updateProperty.Category === 'H '}
                                 onChange={handleCategoryChange}
                             />
                             <RadioBtn
                                 label='Land'
                                 name='category'
                                 value='L'
-                                checked={selectedCategory === 'L'}
+                                defaultChecked={updateProperty.Category === 'L '}
                                 onChange={handleCategoryChange}
                             />
                             <RadioBtn
                                 label='Flats'
                                 name='category'
                                 value='F'
-                                checked={selectedCategory === 'F'}
+                                defaultChecked={updateProperty.Category === 'F '}
                                 onChange={handleCategoryChange}
                             />
                             <RadioBtn
                                 label='Office'
                                 name='category'
                                 value='O'
-                                checked={selectedCategory === 'O'}
+                                defaultChecked={updateProperty.Category === 'O '}
                                 onChange={handleCategoryChange}
                             />
                             <RadioBtn
                                 label='Shutter'
                                 name='category'
                                 value='S'
-                                checked={selectedCategory === 'S'}
+                                defaultChecked={updateProperty.Category === 'S '}
                                 onChange={handleCategoryChange}
                             />
                             <RadioBtn
                                 label='Apartment'
                                 name='category'
                                 value='A'
-                                checked={selectedCategory === 'A'}
+                                defaultChecked={updateProperty.Category === 'A '}
                                 onChange={handleCategoryChange}
                             />
                         </Col>
@@ -405,7 +405,7 @@ const EditPropertyForm = ({ property }) => {
                         <input
                             id='featured'
                             type="checkbox"
-                            checked={property.IsFeatured}
+                            defaultChecked={updateProperty.IsFeatured}
                             onChange={handleFeaturedChange}
                         />
                         <Form.Label htmlFor='featured'>&nbsp; Featured</Form.Label>
@@ -414,7 +414,7 @@ const EditPropertyForm = ({ property }) => {
                         <input
                             id='negotiable'
                             type="checkbox"
-                            checked={property.IsNeg}
+                            defaultChecked={updateProperty.IsNeg}
                             onChange={handleNegotiableChange}
                         />
                         <Form.Label htmlFor='negotiable'>&nbsp; Negotiable</Form.Label>
@@ -423,7 +423,7 @@ const EditPropertyForm = ({ property }) => {
                         <input
                             id='propStatus'
                             type="checkbox"
-                            checked={property.PropStatus}
+                            defaultChecked={updateProperty.PropStatus}
                             onChange={handlePropStatusChange}
                         />
                         <Form.Label htmlFor='propStatus'>&nbsp; PropStatus</Form.Label>

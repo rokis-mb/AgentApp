@@ -18,7 +18,7 @@ const CreatePropertyForm = () => {
 
     const [selectedImages, setSelectedImages] = useState([]);
     const [selectedBase64, setSelectedBase64] = useState('');
-    const [selectedType, setSelectedType] = useState('R');
+    const [selectedPropType, setSelectedPropType] = useState('R');
     const [selectedPurpose, setSelectedPurpose] = useState('R');
     const [selectedCategory, setSelectedCategory] = useState('H');
     const [title, setTitle] = useState('');
@@ -31,6 +31,7 @@ const CreatePropertyForm = () => {
 
     const handlePurposeChange = (e) => {
         const newPurpose = e.target.value;
+        console.log(newPurpose)
         setSelectedPurpose(newPurpose);
         setProperty((prevProperty) => ({
             ...prevProperty,
@@ -38,9 +39,9 @@ const CreatePropertyForm = () => {
         }));
     };
 
-    const handleTypeChange = (e) => {
+    const handlePropTypeChange = (e) => {
         const newType = e.target.value;
-        setSelectedType(newType);
+        setSelectedPropType(newType);
         setProperty((prevProperty) => ({
             ...prevProperty,
             PropType: newType,
@@ -68,6 +69,7 @@ const CreatePropertyForm = () => {
 
     const handleImageChange = (e) => {
         if (e.target.files) {
+            console.log(e.target.files)
             const selected_files = Object.values(e.target.files);
 
             selected_files.map((file) => {
@@ -75,20 +77,31 @@ const CreatePropertyForm = () => {
 
                 reader.onload = function (e) {
                     const result = reader.result;
-                    setSelectedImages((prevImages) =>
-                        prevImages.concat({ Img: result })
+                    setSelectedImages((prevImages) => {
+
+                        return prevImages.concat({ Img: result })
+                    }
                     );
                     setSelectedBase64((prevImages) =>
                         prevImages.concat({
                             Img: result !== null ? result.split(',')[1] : '',
                         })
                     );
+                    console.log(selectedBase64)
+                   
                 };
 
                 reader.readAsDataURL(file);
             });
         }
     };
+
+    useEffect(()=>{
+        setProperty(prevProperty=>({
+            ...prevProperty,
+            "Images": selectedImages.map(x=>({Values: x.Img.split(',')[1]}))
+        }))
+    }, [selectedImages])
 
     const handleImageRemove = (e, img) => {
         e.preventDefault();
@@ -101,7 +114,7 @@ const CreatePropertyForm = () => {
         const isFeatured = e.target.checked;
         setProperty((prevProperty) => ({
             ...prevProperty,
-            IsFeatured: isFeatured,
+            IsFeatured: isFeatured?"Y":"N",
         }));
     };
 
@@ -109,7 +122,7 @@ const CreatePropertyForm = () => {
         const isNegotiable = e.target.checked;
         setProperty((prevProperty) => ({
             ...prevProperty,
-            IsNeg: isNegotiable,
+            IsNeg: isNegotiable?"Y":"N",
         }));
     };
 
@@ -117,7 +130,7 @@ const CreatePropertyForm = () => {
         const propStatus = e.target.checked;
         setProperty((prevProperty) => ({
             ...prevProperty,
-            PropStatus: propStatus,
+            PropStatus: propStatus?"Y":"N",
         }));
     };
 
@@ -157,7 +170,7 @@ const CreatePropertyForm = () => {
 
     return (
         <Form>
-            <Container fluid='md'>
+            <Container fluid='lg'>
                 <Row>
                     <Col md={6}>
                         <Form.Label>Property No.</Form.Label>
@@ -226,6 +239,7 @@ const CreatePropertyForm = () => {
                                 value='R'
                                 checked={selectedPurpose === 'R'}
                                 onChange={handlePurposeChange}
+                                
                             />
                             <RadioBtn
                                 label='Sale'
@@ -243,15 +257,15 @@ const CreatePropertyForm = () => {
                                 label='Residential'
                                 name='type'
                                 value='R'
-                                checked={selectedType === 'R'}
-                                onChange={handleTypeChange}
+                                checked={selectedPropType === 'R'}
+                                onChange={handlePropTypeChange}
                             />
                             <RadioBtn
                                 label='Commercial'
                                 name='type'
                                 value='C'
-                                checked={selectedType === 'C'}
-                                onChange={handleTypeChange}
+                                checked={selectedPropType === 'C'}
+                                onChange={handlePropTypeChange}
                             />
                         </Col>
                     </Col>
