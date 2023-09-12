@@ -41,6 +41,7 @@ const CreatePropertyForm = () => {
 
     const handlePropTypeChange = (e) => {
         const newType = e.target.value;
+        console.log(newType)
         setSelectedPropType(newType);
         setProperty((prevProperty) => ({
             ...prevProperty,
@@ -88,7 +89,7 @@ const CreatePropertyForm = () => {
                         })
                     );
                     console.log(selectedBase64)
-                   
+
                 };
 
                 reader.readAsDataURL(file);
@@ -96,10 +97,10 @@ const CreatePropertyForm = () => {
         }
     };
 
-    useEffect(()=>{
-        setProperty(prevProperty=>({
+    useEffect(() => {
+        setProperty(prevProperty => ({
             ...prevProperty,
-            "Images": selectedImages.map(x=>({Values: x.Img.split(',')[1]}))
+            "Images": selectedImages.map(x => ({ Values: x.Img.split(',')[1] }))
         }))
     }, [selectedImages])
 
@@ -114,7 +115,7 @@ const CreatePropertyForm = () => {
         const isFeatured = e.target.checked;
         setProperty((prevProperty) => ({
             ...prevProperty,
-            IsFeatured: isFeatured?"Y":"N",
+            IsFeatured: isFeatured ? "Y" : "N",
         }));
     };
 
@@ -122,7 +123,7 @@ const CreatePropertyForm = () => {
         const isNegotiable = e.target.checked;
         setProperty((prevProperty) => ({
             ...prevProperty,
-            IsNeg: isNegotiable?"Y":"N",
+            IsNeg: isNegotiable ? "Y" : "N",
         }));
     };
 
@@ -130,7 +131,7 @@ const CreatePropertyForm = () => {
         const propStatus = e.target.checked;
         setProperty((prevProperty) => ({
             ...prevProperty,
-            PropStatus: propStatus?"Y":"N",
+            PropStatus: propStatus ? "Y" : "N",
         }));
     };
 
@@ -239,7 +240,7 @@ const CreatePropertyForm = () => {
                                 value='R'
                                 checked={selectedPurpose === 'R'}
                                 onChange={handlePurposeChange}
-                                
+
                             />
                             <RadioBtn
                                 label='Sale'
@@ -435,6 +436,7 @@ const CreatePropertyForm = () => {
                                             <button onClick={(e) => handleImageRemove(e, image)}>
                                                 <img src={ClearIcon} alt="cross" />
                                             </button>
+
                                         </div>
                                     );
                                 })}
@@ -449,5 +451,3 @@ const CreatePropertyForm = () => {
 }
 
 export default CreatePropertyForm;
-
-

@@ -20,14 +20,13 @@ const PropertyContextProvider = (props) => {
         Category: "",  //done
         YtUrl: "",  //done
         TypeID: "1",  //done
-        // ShopID: "1",  done
         IsFurnished: "",
-        Dining: 0,  //done
-        Kitchen: 0,  //done
-        BedRoom: 0,  //done
-        BathRoom: 0,  //done
-        Hall: 0,  //done
-        TotalFloor: 0,  //done
+        Dining: "",  //done
+        Kitchen: "",  //done
+        BedRoom: "",  //done
+        BathRoom: "",  //done
+        Hall: "",  //done
+        TotalFloor: "",  //done
         Parking: "",  //done
         Price: "",  //done
         PricePer: "",  //done
@@ -35,7 +34,7 @@ const PropertyContextProvider = (props) => {
         IsFeatured: "",  //done
         PropStatus: "",  //done
         Address: "",  //done
-        District: 0,  //done
+        District: "",  //done
         Latitude: "",  //done
         Longitude: "",  //done
         TotalArea: "",  //done
@@ -52,9 +51,11 @@ const PropertyContextProvider = (props) => {
     })
 
     const [updateProperty, setUpdateProperty] = useState({
+        PropertyID : "",
         AuthCode: "r1d3r",
         UserID: "3",
         Flag: "U",
+        ShopID: "1",
         MemID: "",
         MemType: "",
         PropertyNo: "", //done
@@ -67,14 +68,13 @@ const PropertyContextProvider = (props) => {
         Category: "",  //done
         YtUrl: "",  //done
         TypeID: "",  //done
-        // ShopID: "",  done
         IsFurnished: "",
-        Dining: 0,  //done
-        Kitchen: 0,  //done
-        BedRoom: 0,  //done
-        BathRoom: 0,  //done
-        Hall: 0,  //done
-        TotalFloor: 0,  //done
+        Dining: "",  //done
+        Kitchen: "",  //done
+        BedRoom: "",  //done
+        BathRoom: "",  //done
+        Hall: "",  //done
+        TotalFloor: "",  //done
         Parking: "",  //done
         Price: "",  //done
         PricePer: "",  //done
@@ -82,7 +82,7 @@ const PropertyContextProvider = (props) => {
         IsFeatured: "",  //done
         PropStatus: "",  //done
         Address: "",  //done
-        District: 0,  //done
+        District: "",  //done
         Latitude: "",  //done
         Longitude: "",  //done
         TotalArea: "",  //done
@@ -97,7 +97,7 @@ const PropertyContextProvider = (props) => {
     })
 
     const [propertyInfo, setPropertyInfo] = useState({
-        PropertyID: 0,
+        PropertyID: "",
         PropertyNo: "",
         Title: "",
         YtUrl: "",
@@ -105,26 +105,25 @@ const PropertyContextProvider = (props) => {
         Description: "",
         Tags: "",
         Purpose: "",
-        PropTyp: "",
+        Type: "",
         Category: "",
         TypeID: "",
-        // ShopID: 0,
         Furnished: "",
-        Dining: 0,
-        Kitchen: 0,
-        BedRoom: 0,
-        BathRoom: 0,
-        Hall: 0,
-        TotalFloor:0,
+        Dining: "",
+        Kitchen: "",
+        BedRoom: "",
+        BathRoom: "",
+        Hall: "",
+        TotalFloor:"",
         Parking: "",
         Price: "",
         PricePer: "",
         IsNeg: "",
         IsFeatured: "",
-        PropView: 0,
+        PropView: "",
         PropertyStatus: "",
         Address: "",
-        District: 0,
+        District: "",
         Latitude: "",
         Longitude: "",
         TotalArea: "",
@@ -134,9 +133,9 @@ const PropertyContextProvider = (props) => {
         RoadAccessUnit: "",
         PropertyFacing: "",
         Contact: "",
-        OwnerID: 0,
+        OwnerID: "",
         UserType: "",
-        UserID: 0,
+        UserID: "",
         IsActive: ""
     })
 
