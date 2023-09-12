@@ -5,6 +5,7 @@ export const PropertyContext = createContext();
 const PropertyContextProvider = (props) => {
 
     const [property, setProperty] = useState({
+        PropertyID : "",
         AuthCode: "r1d3r",
         UserID: "3",
         Flag: "i",
@@ -97,6 +98,7 @@ const PropertyContextProvider = (props) => {
     })
 
     const [propertyInfo, setPropertyInfo] = useState({
+        UserID: "3",
         PropertyID: "",
         PropertyNo: "",
         Title: "",
@@ -105,7 +107,7 @@ const PropertyContextProvider = (props) => {
         Description: "",
         Tags: "",
         Purpose: "",
-        Type: "",
+        PropType: "",
         Category: "",
         TypeID: "",
         Furnished: "",

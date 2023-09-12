@@ -88,6 +88,7 @@ const PropertyTable = ({ categoryFilter, purposeFilter }) => {
                 })
                 const data = await res.json();
                 setPropertyInfo(data)
+                console.log(data)
 
             } catch (error) {
                 console.log(error)
@@ -103,19 +104,37 @@ const PropertyTable = ({ categoryFilter, purposeFilter }) => {
         updatePropertyData(updateProperty);
     }
 
+    function convertNumericValuesToStrings(data) {
+        const newData = { ...data };
+    
+        for (const key in newData) {
+            if (typeof newData[key] === 'number') {
+                newData[key] = newData[key].toString();
+            }
+        }
+    
+        return newData;
+    }
+    
     async function updatePropertyData(data) {
-        console.log(data)
         try {
-            await fetch("https://testing.esnep.com/happyhomes/api/admin/property", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Signature": "p0m76"
-                },
-                body: JSON.stringify(data)
-            })
+            if (data) {
+                const convertedData = convertNumericValuesToStrings(data);
+                const jsonData = JSON.stringify({ ...convertedData, ShopID: "1" });
+                console.log("JSON Data:", jsonData); // Log the JSON data to check if it's valid
+                await fetch("https://testing.esnep.com/happyhomes/api/admin/property", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Signature": "p0m76"
+                    },
+                    body: jsonData
+                });
+            } else {
+                console.log("Data is empty or invalid.");
+            }
         } catch (error) {
-            console.log(error)
+            console.error("Error:", error);
         }
     }
 

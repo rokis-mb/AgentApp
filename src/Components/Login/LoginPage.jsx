@@ -47,7 +47,7 @@ const LoginForm = () => {
                 </div>
               </Col>
               <Col md={6} className="login-form">
-                <div className="login-title">Agent Login Form</div>
+                <div className="login-title">Agent Login</div>
                 <span className="form-title">Sign in</span>
                 <div className="d-flex flex-column username-container">
                   <Form.Label>Username</Form.Label>
