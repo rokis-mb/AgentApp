@@ -151,9 +151,9 @@ const CreatePropertyForm = () => {
     ];
 
     const pricePer = [
-        { name: 'Aana', value: '400' },
-        { name: 'Ropani', value: '8000' },
-        { name: 'Dhur', value: '55' },
+        { name: 'Aana', value: 'AA' },
+        { name: 'Ropani', value: 'R' },
+        { name: 'Dhur', value: 'D' },
     ];
 
     const roadAccess = [
@@ -434,9 +434,8 @@ const CreatePropertyForm = () => {
                                         <div key={i} className="image">
                                             <img className='multi-img' src={image.Img} height="200" alt="upload" />
                                             <button onClick={(e) => handleImageRemove(e, image)}>
-                                                <img src={ClearIcon} alt="cross" />
+                                                <ClearIcon />
                                             </button>
-
                                         </div>
                                     );
                                 })}

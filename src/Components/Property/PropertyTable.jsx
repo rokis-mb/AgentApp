@@ -219,7 +219,7 @@ const PropertyTable = ({ categoryFilter, purposeFilter }) => {
             cell: (row) => (
                 <div className='d-flex'>
                     <button onClick={() => { handleEditOpen(row) }} title="Edit" className="btn bg-transparent"><EditIcon style={{ color: '#0F52BA', border: "0px!important" }} /></button>
-                    <button onClick={() => handleDelOpen(row)} title="Remove" className="btn bg-transparent"><DeleteForeverRoundedIcon style={{ color: '#0F52BA', border: "0px!important" }} /></button>
+                    <button onClick={() => handleDelOpen(row)} title="Remove" className="btn bg-transparent"><DeleteForeverRoundedIcon style={{ color: 'red', border: "0px!important" }} /></button>
                 </div>
             )
         },
@@ -247,7 +247,6 @@ const PropertyTable = ({ categoryFilter, purposeFilter }) => {
         <div>
             <DataTable
                 pagination
-                selectableRows
                 columns={columns}
                 data={filteredPropertyList} // Use the filtered list here
                 customStyles={customStyles}

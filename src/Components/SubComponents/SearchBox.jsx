@@ -5,8 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function SearchBox(props) {
 
+  const inputStyle = {
+    border: props.border ? '1px solid rgb(212, 212, 212)' : 'none',
+  };
+
   return (
-    <div className='search-box-container'>
+    <div className='search-box-container' style={inputStyle}>
       <input
         className='search-box'
         placeholder="Search..."

@@ -99,16 +99,16 @@ const PropertyList = () => {
                     </Row>
                     <hr />
                     <Row className='justify-content-md-end align-items-end'>
-                        <Col sm='auto' className='mb-2'>
+                        <Col sm='auto' className='mb-2' style={{ width: '10rem' }}>
                             Purpose:
                             <FilterDropDown onChange={(e) => { setSelectedPurposeFilter(e.target.value) }} options={purposeOptions} value={selectedPurposeFilter} />
                         </Col>
-                        <Col sm='auto' className='mb-2'>
+                        <Col sm='auto' className='mb-2' style={{ width: '10rem' }}>
                             Category:
                             <FilterDropDown onChange={(e) => { setSelectedCategoryFilter(e.target.value) }} options={CategoryOptions} value={selectedCategoryFilter} />
                         </Col>
                         <Col sm='auto' className='mb-2'>
-                            <SearchBox />
+                            <SearchBox border={true}/>
                         </Col>
                     </Row>
                 </Container>

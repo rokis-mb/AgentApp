@@ -184,9 +184,9 @@ const EditPropertyForm = ({ property }) => {
     ];
 
     const pricePer = [
-        { name: 'Aana', value: '400' },
-        { name: 'Ropani', value: '8000' },
-        { name: 'Dhur', value: '55' },
+        { name: 'Aana', value: 'AA' },
+        { name: 'Ropani', value: 'R' },
+        { name: 'Dhur', value: 'D' },
     ];
 
     const roadAccess = [
@@ -387,7 +387,7 @@ const EditPropertyForm = ({ property }) => {
                 <Row className='mt-2'>
                     <Col md={3}><Form.Label>Total Area</Form.Label><Input defaultValue={propertyData?.TotalArea} className='my-form-control' type="text" onChange={(e) => setUpdateProperty({ ...updateProperty, TotalArea: e.target.value })} /></Col>
                     <Col md={3}><Form.Label></Form.Label><DropDown defaultValue={propertyData?.TotalAreaUnit} options={totalAreaUnit} info="Select unit" onChange={(e) => setUpdateProperty({ ...updateProperty, TotalAreaUnit: e.target.value })} /></Col>
-                    <Col md={3}><Form.Label>Price</Form.Label><DropDown defaultValue={propertyData?.PricePer} options={pricePer} info="Price Per" onChange={(e) => setUpdateProperty({ ...updateProperty, PricePer: e.target.value })} /></Col>
+                    <Col md={3}><Form.Label>Price</Form.Label><DropDown defaultValue={propertyData?.PricePerUnit} options={pricePer} info="Price Per" onChange={(e) => setUpdateProperty({ ...updateProperty, PricePer: e.target.value })} /></Col>
                     <Col md={3}><Form.Label></Form.Label><Input defaultValue={propertyData?.Price} className='my-form-control' type="number" onChange={(e) => setUpdateProperty({ ...updateProperty, Price: e.target.value })} /></Col>
                 </Row>
 
@@ -469,7 +469,7 @@ const EditPropertyForm = ({ property }) => {
                                         <div key={i} className="image">
                                             <img className='multi-img' src={image.Img} height="200" alt="upload" />
                                             <button onClick={(e) => handleImageRemove(e, image)}>
-                                                <img src={ClearIcon} alt="cross" />
+                                                <ClearIcon />
                                             </button>
                                         </div>
                                     );

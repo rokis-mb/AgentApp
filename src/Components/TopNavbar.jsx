@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import { useSidebarContext } from '../Context/SidebarContext';
 import Form from 'react-bootstrap/Form';
@@ -9,12 +9,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faBell, faTh } from '@fortawesome/free-solid-svg-icons'; // Import the faTh (waffle) icon
 import Image from 'react-bootstrap/Image';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import UserContext from '../Context/UserProvider';
 
 
 import '../CSS/TopNavbar.css'
 import SearchBox from './SubComponents/SearchBox';
 
+
 const TopNavbar = () => {
+    
+    const {user, logout} = useContext(UserContext);
     const { setSidebarOpen, sidebarOpen } = useSidebarContext();
     const [searchValue, setSearchValue] = useState('');
     // const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -61,12 +65,12 @@ const TopNavbar = () => {
                             </NavDropdown.Item>
                         </NavDropdown>
                         <NavDropdown title={<div className="profile-picture"><Image src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Profile" fluid /></div>} id="profileDropdown" drop="left" align="end">
-                            <NavDropdown.Item href="#Set-Status">Set Status</NavDropdown.Item>
+                            {/* <NavDropdown.Item href="#Set-Status">Set Status</NavDropdown.Item>
                             <NavDropdown.Item href="#Profile-and-Account">Profile and Account</NavDropdown.Item>
                             <NavDropdown.Item href="#Feedback">Feedback</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="#Settings">Settings</NavDropdown.Item>
-                            <NavDropdown.Item href="#LogOut">LogOut</NavDropdown.Item>
+                            <NavDropdown.Item href="#Settings">Settings</NavDropdown.Item> */}
+                            <NavDropdown.Item onClick={()=>logout()}>LogOut</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>

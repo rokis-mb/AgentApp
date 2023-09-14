@@ -8,13 +8,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import App from './App';
 import './index.css'
+import { UserProvider } from './Context/UserProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+   
+      <BrowserRouter>
+        <UserProvider>
+        <App />
+        </UserProvider>
+      </BrowserRouter>
+    
+    
   </React.StrictMode>
 );
 

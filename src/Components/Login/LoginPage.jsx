@@ -1,17 +1,56 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap"
 import LoginInput from "../SubComponents/LoginInput"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import '../../CSS/LoginPage.css'
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import whatsapp from '../../PNG/whatsapp.png'
 import logo from '../../PNG/Logo-edit.png'
+import { useNavigate } from "react-router-dom"
+import UserContext from '../../Context/UserProvider';
+import { toast } from "react-toastify";
 
 const LoginForm = () => {
-
+  const { user, setUser, login, isLoading } = useContext(UserContext);
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+
+  async function deviceLogin() {
+    try {
+      const res = await fetch("https://testing.esnep.com/happyhomes/api/agent/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Signature": "p0m76"
+        },
+        body: JSON.stringify({
+          "UserName": username,
+          "Password": password,
+          "Device": "A",
+          "NotToken": "eee"
+        })
+      })
+      const data = await res.json()
+      if (data.StatusCode === 200) {
+        toast.success('Logged in successfully')
+        const userData = data.Values[0]
+        console.log('This is device login user data', userData)
+        setUser(userData)
+        sessionStorage.setItem('user', JSON.stringify(userData));
+        navigate("/*")
+        console.log('login is working')
+
+      } else {
+        // Handle authentication failure
+        toast.error('Invalid username or password')
+      }
+      console.log(user, 'hehe')
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
 
   const iconStyles = {
@@ -50,11 +89,11 @@ const LoginForm = () => {
                 <div className="login-title">Agent Login</div>
                 <span className="form-title">Sign in</span>
                 <div className="d-flex flex-column username-container">
-                  <Form.Label>Username</Form.Label>
+                  {/* <Form.Label>Username</Form.Label> */}
                   <LoginInput placeholder='Enter your username' type='text' onChange={(e) => setUsername(e.target.value)} />
                 </div>
                 <div className="d-flex flex-column password-container">
-                  <Form.Label>Password</Form.Label>
+                  {/* <Form.Label>Password</Form.Label> */}
                   <div className="input-group">
                     <LoginInput
                       placeholder="Enter your password"
@@ -75,7 +114,7 @@ const LoginForm = () => {
                 <Container>
                   <Row className="btn-row justify-content-center">
                     <Col md={5} >
-                      <Button className='signInBtn' size="md">Sign in</Button>
+                      <Button className='signInBtn' size="md" onClick={deviceLogin}>Sign in</Button>
                     </Col>
                     <Col md={5}>
                       <Button className='signUpBtn' size="md">Sign Up</Button>
