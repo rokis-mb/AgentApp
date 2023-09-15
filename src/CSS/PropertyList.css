@@ -19,7 +19,14 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.purpose-dropdown{
+    margin-right: 2rem;
+    width: 10rem;
+}
 
+.category-dropdown{
+    width: 10rem;
+}
 
 /* .open-container{
     max-width: 1300px !important;

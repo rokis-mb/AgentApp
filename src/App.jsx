@@ -13,7 +13,7 @@ library.add(fas);
 
 const App = () => {
     const [searchValue, setSearchValue] = useState('');
-    const { user, setUser, isLoading, setIsLoading, sessionUser, setSessionUser } = useContext(UserContext);
+    const { user, setUser, isLoading, setIsLoading, sessionUser, setSessionUser, setLocalUser, localUser } = useContext(UserContext);
     const handleSearchChange = (event) => {
         setSearchValue(event.target.value);
     };
@@ -49,14 +49,17 @@ const App = () => {
     // useEffect(() => {
     //     checkSession();
     // }, [])
-    console.log('App', sessionUser)
+    console.log('App Local:', localUser)
 
     return (
         <>
             <ToastContainer position="top-right" pauseOnHover={false} />
             <Routes>
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/*" element={sessionUser ? <MainRoutes /> : <Navigate to="/login" />} />
+                {!localUser ? (
+                    <Route path="/login" element={<LoginPage />} />
+                ) : (
+                    <Route path="/*" element={<MainRoutes />} />
+                )}
             </Routes>
         </>
 

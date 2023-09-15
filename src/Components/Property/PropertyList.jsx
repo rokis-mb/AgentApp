@@ -10,6 +10,7 @@ import Modal from 'react-bootstrap/Modal';
 import { useContext, useState } from 'react'
 import CreatePropertyForm from './CreatePropertyForm';
 import FilterDropDown from '../SubComponents/FilterDropDown';
+import '../../CSS/PropertyList.css'
 
 const PropertyList = () => {
 
@@ -40,12 +41,12 @@ const PropertyList = () => {
 
     const CategoryOptions = [
         { name: 'All', value: '-1' },
-        { name: 'House', value: 'H' },
-        { name: 'Land', value: 'L' },
-        { name: 'Flat', value: 'F' },
-        { name: 'Office', value: 'O' },
-        { name: 'Shutter', value: 'S' },
-        { name: 'Apartment', value: 'A' },
+        { name: 'House', value: 'House' },
+        { name: 'Land', value: 'Land' },
+        { name: 'Flat', value: 'Flat' },
+        { name: 'Office', value: 'Office' },
+        { name: 'Shutter', value: 'Shutter' },
+        { name: 'Apartment', value: 'Apartment' },
     ]
 
 
@@ -98,17 +99,21 @@ const PropertyList = () => {
                         </Col>
                     </Row>
                     <hr />
-                    <Row className='justify-content-md-end align-items-end'>
-                        <Col sm='auto' className='mb-2' style={{ width: '10rem' }}>
-                            Purpose:
-                            <FilterDropDown onChange={(e) => { setSelectedPurposeFilter(e.target.value) }} options={purposeOptions} value={selectedPurposeFilter} />
-                        </Col>
-                        <Col sm='auto' className='mb-2' style={{ width: '10rem' }}>
-                            Category:
-                            <FilterDropDown onChange={(e) => { setSelectedCategoryFilter(e.target.value) }} options={CategoryOptions} value={selectedCategoryFilter} />
+                    <Row className='justify-content-md-between align-items-end'>
+                        <Col sm='auto' className='mb-2' style={{ width: '25rem' }}>
+                            <div className='d-flex'>
+                                <div className='purpose-dropdown'>
+                                    Purpose:
+                                    <FilterDropDown onChange={(e) => { setSelectedPurposeFilter(e.target.value) }} options={purposeOptions} value={selectedPurposeFilter} />
+                                </div>
+                                <div className='category-dropdown'>
+                                    Category:
+                                    <FilterDropDown onChange={(e) => { setSelectedCategoryFilter(e.target.value) }} options={CategoryOptions} value={selectedCategoryFilter} />
+                                </div>
+                            </div>
                         </Col>
                         <Col sm='auto' className='mb-2'>
-                            <SearchBox border={true}/>
+                            <SearchBox border={true} />
                         </Col>
                     </Row>
                 </Container>

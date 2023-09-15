@@ -34,14 +34,7 @@ const LoginForm = () => {
       })
       const data = await res.json()
       if (data.StatusCode === 200) {
-        toast.success('Logged in successfully')
-        const userData = data.Values[0]
-        console.log('This is device login user data', userData)
-        setUser(userData)
-        sessionStorage.setItem('user', JSON.stringify(userData));
-        navigate("/*")
-        console.log('login is working')
-
+        login(data);
       } else {
         // Handle authentication failure
         toast.error('Invalid username or password')

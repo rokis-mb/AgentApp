@@ -38,13 +38,30 @@ const PropertyTable = ({ categoryFilter, purposeFilter }) => {
                 })
             })
             const data = await res.json();
-            setPropertyList(data.Values);
-            setFilteredPropertyList(data.Values)
+            const mappedData = data.Values.map((property) => {
+                const categoryMapping = propertyCategory.find((x) => x.category === property.Category);
+                if (categoryMapping) {
+                    return { ...property, Category: categoryMapping.fullform };
+                }
+                return property;
+            });
+
+            setPropertyList(mappedData);
+            setFilteredPropertyList(mappedData);
         }
         catch (error) {
             console.log(error)
         }
     }
+
+    const propertyCategory = [
+        { category: 'H ', fullform: 'House' },
+        { category: 'O ', fullform: 'Office' },
+        { category: 'L ', fullform: 'Land' },
+        { category: 'S ', fullform: 'Shutter' },
+        { category: 'A ', fullform: 'Apartment' },
+        { category: 'F ', fullform: 'Flat' },
+    ]
 
     useEffect(() => {
         fetchProperty();
@@ -106,16 +123,16 @@ const PropertyTable = ({ categoryFilter, purposeFilter }) => {
 
     function convertNumericValuesToStrings(data) {
         const newData = { ...data };
-    
+
         for (const key in newData) {
             if (typeof newData[key] === 'number') {
                 newData[key] = newData[key].toString();
             }
         }
-    
+
         return newData;
     }
-    
+
     async function updatePropertyData(data) {
         try {
             if (data) {
@@ -159,7 +176,7 @@ const PropertyTable = ({ categoryFilter, purposeFilter }) => {
         }
     }
     useEffect(() => {
-        
+
         setFilteredPropertyList(propertyList.filter((property) => {
 
             if (purposeFilter === "-1" && categoryFilter === "-1") {
@@ -175,13 +192,6 @@ const PropertyTable = ({ categoryFilter, purposeFilter }) => {
             }
         }));
     }, [categoryFilter, purposeFilter])
-    // if (
-    //     (typeFilter === "-1" || property.Type === typeFilter) &&
-    //     (purposeFilter === "-1" || property.Purpose === purposeFilter)
-    // ) {
-    //     return true; // Include in the filtered list
-    // }
-    // return false; // Exclude from the filtered list
 
     const columns = [
         {
