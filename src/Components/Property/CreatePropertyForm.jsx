@@ -10,7 +10,8 @@ import RadioBtn from '../SubComponents/RadioBtn';
 import { PropertyContext } from '../../Context/PropertyContextProvider';
 import ClearIcon from '@mui/icons-material/Clear';
 import '../../CSS/CreatePropertyForm.css';
-
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 
 const CreatePropertyForm = () => {
@@ -23,6 +24,17 @@ const CreatePropertyForm = () => {
     const [selectedCategory, setSelectedCategory] = useState('H');
     const [title, setTitle] = useState('');
     const [slug, setSlug] = useState('');
+    const [editorState, setEditorState] = useState(null);
+    const [editorContent, setEditorContent] = useState('');
+
+    const onEditorStateChange = (newEditorState) => {
+        setEditorState(newEditorState);
+        setEditorContent(newEditorState.getCurrentContent().getPlainText());
+        setProperty({
+            ...property,
+            Description: editorContent,
+        })
+    };
 
     useEffect(() => {
         const generatedSlug = title;
@@ -217,7 +229,14 @@ const CreatePropertyForm = () => {
                 <Row className='mt-2'>
                     <Col md={12}>
                         <Form.Label>Description</Form.Label>
-                        <TextArea
+                        <div className="editor-container">
+
+                            <Editor
+                                editorState={editorState}
+                                onEditorStateChange={onEditorStateChange}
+                            />
+                        </div>
+                        {/* <TextArea
                             name="Description"
                             rows='3'
                             onChange={(e) =>
@@ -226,7 +245,7 @@ const CreatePropertyForm = () => {
                                     Description: e.target.value,
                                 })
                             }
-                        />
+                        /> */}
                     </Col>
                 </Row>
 

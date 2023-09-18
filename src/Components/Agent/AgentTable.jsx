@@ -12,15 +12,14 @@ import LockResetIcon from '@mui/icons-material/LockReset';
 
 import '../../CSS/AgentTable.css'
 
-const AgentTable = () => {
+const AgentTable = ({searchBoxFilter}) => {
     const [agent, setAgent] = useState([]);
     const [selectedAgent, setSelectedAgent] = useState();
     const { updateAgent, agentInfo, setAgentInfo } = useContext(AgentContext);
     const [show, setShow] = useState(false);
     const [rpshow, setRPShow] = useState(false);
+    const [filteredAgentList, setFilteredAgentList] = useState([]);
     
-    
-
     // Fetching data from the api
 
     const getAgents = async () => {
@@ -49,6 +48,7 @@ const AgentTable = () => {
                 };
             });
             setAgent(agentsWithAllowStatus);
+            setFilteredAgentList(agentsWithAllowStatus);
         } catch (error) {
             console.log(error)
         }
@@ -59,6 +59,15 @@ const AgentTable = () => {
         getAgents();
     }, [])
 
+    useEffect(() => {
+        setFilteredAgentList(agent.filter((agent) => {
+            const searchFilter = searchBoxFilter ? searchBoxFilter.toLowerCase() : ""; // Check if searchBoxFilter is defined
+            const fullname = agent.FullName?agent.FullName.toLowerCase() : ""; // Check if agent.Username is defined
+            const matchesSearch = searchFilter === "" || fullname.includes(searchFilter);
+    
+            return matchesSearch;
+        }));
+    }, [searchBoxFilter]);
     
 
     const handleRPClose = () => {
@@ -216,7 +225,7 @@ const AgentTable = () => {
 
     return (
         <>
-            <DataTable columns={columns} data={agent}
+            <DataTable columns={columns} data={filteredAgentList}
                 pagination
                 fixedHeader
                 fixedHeaderScrollHeight='500px'

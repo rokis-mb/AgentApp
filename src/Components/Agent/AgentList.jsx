@@ -6,9 +6,7 @@ import CreateAgentForm from './CreateAgentForm';
 import Modal from 'react-bootstrap/Modal';
 import AgentTable from './AgentTable';
 import { AgentContext } from '../../Context/AgentContextProvider';
-import { useContext, useState } from 'react'
-import Form from 'react-bootstrap/Form';
-
+import { useContext, useEffect, useState } from 'react'
 
 import '../../CSS/AgentList.css'
 import { useSidebarContext } from '../../Context/SidebarContext';
@@ -21,12 +19,16 @@ const AgentList = () => {
     // States
     const [show, setShow] = useState(false);
     const { agent } = useContext(AgentContext);
+    const [searchInputValue, setSearchInputValue] = useState("")
+    const [sendSearchInputValue, setSendSearchInputValue] = useState("");
 
-    const [searchValue, setSearchValue] = useState('');
-
-    const handleSearchChange = (event) => {
-        setSearchValue(event.target.value);
-    };
+    const handleClear  = () =>{
+        setSearchInputValue("")
+    }
+    
+    useEffect(()=>{
+        setSendSearchInputValue(searchInputValue)
+    }, [searchInputValue])
 
 
     const handleClose = () => {
@@ -44,7 +46,6 @@ const AgentList = () => {
 
     async function createAgent(data) {
         try {
-
             await fetch("https://testing.esnep.com/happyhomes/api/admin/agent", {
                 method: "POST",
                 headers: {
@@ -75,7 +76,7 @@ const AgentList = () => {
                     <hr />
                     <Row className='justify-content-md-end'>
                         <Col sm='auto' className='mb-2'>
-                            <SearchBox/>
+                        <SearchBox border={true} handleClear={handleClear} onChange={(e)=>setSearchInputValue(e.target.value)}/>
                         </Col>
                     </Row>
                 </Container>
@@ -92,7 +93,7 @@ const AgentList = () => {
                         </Button>
                     </Modal.Footer>
                 </Modal>
-                <AgentTable />
+                <AgentTable searchBoxFilter = {sendSearchInputValue}/>
             </div>
         </div>
     )

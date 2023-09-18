@@ -12,6 +12,7 @@ import { Route, Routes } from 'react-router-dom';
 import PropertyList from './Components/Property/PropertyList';
 import PropertyContextProvider from './Context/PropertyContextProvider';
 import { UserProvider } from './Context/UserProvider';
+import DummyTextFormatter from './Components/Dummy-Components/DummyTextFormatter';
 
 library.add(fas);
 

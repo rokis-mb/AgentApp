@@ -19,6 +19,7 @@ export const UserProvider = ({ children }) => {
     const userData = data.Values[0]
     console.log('This is device login user data', userData)
     setUser(userData)
+    setLocalUser(userData)
     sessionStorage.setItem('user', JSON.stringify(data.Values[0]));
     localStorage.setItem('user', JSON.stringify(data.Values[0]));
     navigate("/")

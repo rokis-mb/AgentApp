@@ -1,0 +1,38 @@
+.editor-container {
+    width: 100%; /* Adjust the width as needed */
+    margin: 0 auto;
+    padding: 1rem;
+    border: 1px solid #f0f0f0;
+    background-color: #ffffff;
+  }
+  
+  /* Style the text within the editor */
+  .public-DraftEditor-content {
+    min-height: 100px; /* Adjust the height as needed */
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  /* Customize the toolbar styles if needed */
+  .rdw-editor-toolbar {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: small;
+  }
+
+  .editor-container img {
+    width: auto!important;
+    height: 100%!important;
+  }
+
+  .rdw-dropdown-selectedtext {
+    text-decoration: none;
+  }
+
+  .rdw-dropdown-selectedtext:hover {
+    text-decoration: none;
+  }
+
+  

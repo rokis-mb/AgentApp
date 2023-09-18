@@ -7,7 +7,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Modal from 'react-bootstrap/Modal';
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import CreatePropertyForm from './CreatePropertyForm';
 import FilterDropDown from '../SubComponents/FilterDropDown';
 import '../../CSS/PropertyList.css'
@@ -19,6 +19,8 @@ const PropertyList = () => {
 
     const [selectedPurposeFilter, setSelectedPurposeFilter] = useState("-1")
     const [selectedCategoryFilter, setSelectedCategoryFilter] = useState("-1")
+    const [searchInputValue, setSearchInputValue] = useState("")
+    const [sendSearchInputValue, setSendSearchInputValue] = useState("");
 
     const handleClose = () => {
         setShow(false)
@@ -49,6 +51,13 @@ const PropertyList = () => {
         { name: 'Apartment', value: 'Apartment' },
     ]
 
+    const handleClear  = () =>{
+        setSearchInputValue("")
+    }
+    
+    useEffect(()=>{
+        setSendSearchInputValue(searchInputValue)
+    }, [searchInputValue])
 
     function convertNumericValuesToStrings(data) {
         const newData = { ...data };
@@ -113,7 +122,7 @@ const PropertyList = () => {
                             </div>
                         </Col>
                         <Col sm='auto' className='mb-2'>
-                            <SearchBox border={true} />
+                            <SearchBox border={true} handleClear={handleClear} onChange={(e)=>setSearchInputValue(e.target.value)}/>
                         </Col>
                     </Row>
                 </Container>
@@ -130,7 +139,7 @@ const PropertyList = () => {
                         </Button>
                     </Modal.Footer>
                 </Modal>
-                <PropertyTable categoryFilter={selectedCategoryFilter} purposeFilter={selectedPurposeFilter} />
+                <PropertyTable categoryFilter={selectedCategoryFilter} purposeFilter={selectedPurposeFilter} searchBoxFilter = {sendSearchInputValue}/>
             </div>
         </div>
     )

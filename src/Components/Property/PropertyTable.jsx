@@ -8,7 +8,7 @@ import { PropertyContext } from '../../Context/PropertyContextProvider';
 import EditPropertyForm from './EditPropertyForm';
 
 
-const PropertyTable = ({ categoryFilter, purposeFilter }) => {
+const PropertyTable = ({ categoryFilter, purposeFilter, searchBoxFilter }) => {
 
     const [propertyList, setPropertyList] = useState([])
     const [showDelete, setShowDelete] = useState(false)
@@ -176,22 +176,16 @@ const PropertyTable = ({ categoryFilter, purposeFilter }) => {
         }
     }
     useEffect(() => {
-
         setFilteredPropertyList(propertyList.filter((property) => {
+            const matchesCategory = categoryFilter === "-1" || categoryFilter === property.Category.trim();
+            const matchesPurpose = purposeFilter === "-1" || purposeFilter === property.Purpose.trim();
+            const searchFilter = searchBoxFilter.toLowerCase(); // Convert searchBoxFilter to lowercase
+            const title = property.Title.toLowerCase(); // Convert Title to lowercase
+            const matchesSearch = searchFilter === "" || title.includes(searchFilter);
 
-            if (purposeFilter === "-1" && categoryFilter === "-1") {
-                return true
-            } else if (purposeFilter === property.Purpose.trim() && categoryFilter === "-1") {
-                return true
-            } else if (purposeFilter === '-1' && categoryFilter === property.Category.trim()) {
-                return true
-            } else if (purposeFilter === property.Purpose.trim() && categoryFilter === property.Category.trim()) {
-                return true
-            } else {
-                return false
-            }
+            return matchesCategory && matchesPurpose && matchesSearch;
         }));
-    }, [categoryFilter, purposeFilter])
+    }, [categoryFilter, purposeFilter, searchBoxFilter]);
 
     const columns = [
         {
