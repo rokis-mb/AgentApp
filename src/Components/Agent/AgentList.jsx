@@ -7,6 +7,7 @@ import Modal from 'react-bootstrap/Modal';
 import AgentTable from './AgentTable';
 import { AgentContext } from '../../Context/AgentContextProvider';
 import { useContext, useEffect, useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import '../../CSS/AgentList.css'
 import { useSidebarContext } from '../../Context/SidebarContext';
@@ -71,6 +72,12 @@ const AgentList = () => {
                     <Row className='justify-content-md-end'>
                         <Col sm='auto'>
                             <Button onClick={handleOpen} className='addBtn' size="md"> + Add New</Button>
+                        </Col>
+                        <Col sm='auto' style={{fontSize: 'x-large', color: 'red', cursor: 'pointer'}}>
+                            <FontAwesomeIcon icon='fa-solid fa-file-pdf' />
+                        </Col>
+                        <Col sm='auto' style={{fontSize: 'x-large', color: 'green', cursor: 'pointer'}}>
+                            <FontAwesomeIcon icon='fa-solid fa-file-excel' />
                         </Col>
                     </Row>
                     <hr />

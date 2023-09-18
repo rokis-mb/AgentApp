@@ -11,6 +11,7 @@ import { useContext, useEffect, useState } from 'react'
 import CreatePropertyForm from './CreatePropertyForm';
 import FilterDropDown from '../SubComponents/FilterDropDown';
 import '../../CSS/PropertyList.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const PropertyList = () => {
 
@@ -105,6 +106,12 @@ const PropertyList = () => {
                     <Row className='justify-content-md-end'>
                         <Col sm='auto'>
                             <Button onClick={handleOpen} className='addBtn' size="md"> + Add New</Button>
+                        </Col>
+                        <Col sm='auto' style={{fontSize: 'x-large', color: 'red', cursor: 'pointer'}}>
+                            <FontAwesomeIcon icon='fa-solid fa-file-pdf' />
+                        </Col>
+                        <Col sm='auto' style={{fontSize: 'x-large', color: 'green', cursor: 'pointer'}}>
+                            <FontAwesomeIcon icon='fa-solid fa-file-excel' />
                         </Col>
                     </Row>
                     <hr />

@@ -1,22 +1,18 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import {  Route, Routes } from 'react-router-dom';
 import MainRoutes from './MainRoutes';
 import LoginPage from './Components/Login/LoginPage'
-import UserContext, { UserProvider } from './Context/UserProvider';
-import { ToastContainer, toast } from 'react-toastify';
+import UserContext from './Context/UserProvider';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 library.add(fas);
 
 const App = () => {
-    const [searchValue, setSearchValue] = useState('');
-    const { user, setUser, isLoading, setIsLoading, sessionUser, setSessionUser, setLocalUser, localUser } = useContext(UserContext);
-    const handleSearchChange = (event) => {
-        setSearchValue(event.target.value);
-    };
+    const {localUser } = useContext(UserContext);
 
     // async function checkSession() {
     //     setIsLoading(true)
@@ -49,7 +45,6 @@ const App = () => {
     // useEffect(() => {
     //     checkSession();
     // }, [])
-    console.log('App Local:', localUser)
 
     return (
         <>
