@@ -129,4 +129,9 @@
     text-decoration: none;
   }
 
-  
+  .prev-btn, .next-btn{
+    border: none;
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+  }

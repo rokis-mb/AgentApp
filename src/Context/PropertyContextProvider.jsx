@@ -141,9 +141,11 @@ const PropertyContextProvider = (props) => {
         IsActive: ""
     })
 
+    const [createFormStep, setCreateFormStep] = useState(1);
+    const [editFormStep, setEditFormStep] = useState(1);
+
     const contextValue = {
-        propertyInfo, setPropertyInfo, property, setProperty, updateProperty, setUpdateProperty
-    };
+        propertyInfo, setPropertyInfo, property, setProperty, updateProperty, setUpdateProperty, createFormStep, setCreateFormStep, editFormStep, setEditFormStep};
 
     return (
         <PropertyContext.Provider value={contextValue}>

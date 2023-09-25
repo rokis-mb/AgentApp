@@ -8,7 +8,6 @@ import AgentTable from './AgentTable';
 import { AgentContext } from '../../Context/AgentContextProvider';
 import { useContext, useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import '../../CSS/AgentList.css'
 import { useSidebarContext } from '../../Context/SidebarContext';
 import SearchBox from '../SubComponents/SearchBox';
@@ -73,10 +72,10 @@ const AgentList = () => {
                         <Col sm='auto'>
                             <Button onClick={handleOpen} className='addBtn' size="md"> + Add New</Button>
                         </Col>
-                        <Col sm='auto' style={{fontSize: 'x-large', color: 'red', cursor: 'pointer'}}>
+                        <Col sm='auto' title='pdf' style={{fontSize: 'x-large', color: 'red', cursor: 'pointer'}}>
                             <FontAwesomeIcon icon='fa-solid fa-file-pdf' />
                         </Col>
-                        <Col sm='auto' style={{fontSize: 'x-large', color: 'green', cursor: 'pointer'}}>
+                        <Col sm='auto' title='excel' style={{fontSize: 'x-large', color: 'green', cursor: 'pointer'}}>
                             <FontAwesomeIcon icon='fa-solid fa-file-excel' />
                         </Col>
                     </Row>

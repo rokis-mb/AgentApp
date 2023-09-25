@@ -10,6 +10,7 @@ import { faShoppingCart, faBell, faTh } from '@fortawesome/free-solid-svg-icons'
 import Image from 'react-bootstrap/Image';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import UserContext from '../Context/UserProvider';
+import logoblack from '../Hamburger/iconblack.png'
 
 
 import '../CSS/TopNavbar.css'
@@ -17,8 +18,8 @@ import SearchBox from './SubComponents/SearchBox';
 
 
 const TopNavbar = () => {
-    
-    const {user, logout} = useContext(UserContext);
+
+    const { logout } = useContext(UserContext);
     const { setSidebarOpen, sidebarOpen } = useSidebarContext();
     const [searchValue, setSearchValue] = useState('');
     // const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -37,10 +38,12 @@ const TopNavbar = () => {
         <Navbar expand="md" className={`bg-body-transparent nav-py zIndex nav-pl ${sidebarOpen ? "navbar-open" : "navbar-close"}`}>
             <Container fluid>
                 <div className='d-flex nav-title'>
-                    <FontAwesomeIcon icon={faBars} className="toggle-button" onClick={handleSidebarToggle} />
+                    <div className='hamburger-container'>
+                        <img src={logoblack} className="toggle-button" onMouseOver={handleSidebarToggle} onMouseLeave={handleSidebarToggle}/>
+                    </div>
                     <Navbar.Brand className='nav-logo' href="#">
-                            <img className='logo-img' src="https://basobashappyhomes.com/static/media/logo.7c96b30bb1e0b7346f3b.png" alt="Logo" />
-                        
+                        <img className='logo-img' src="https://basobashappyhomes.com/static/media/logo.7c96b30bb1e0b7346f3b.png" alt="Logo" />
+
                         <div className='logo-text-container'>Basobas Happy Homes Pvt. Ltd</div>
                     </Navbar.Brand>
                 </div>
@@ -70,7 +73,7 @@ const TopNavbar = () => {
                             <NavDropdown.Item href="#Feedback">Feedback</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="#Settings">Settings</NavDropdown.Item> */}
-                            <NavDropdown.Item onClick={()=>logout()}>LogOut</NavDropdown.Item>
+                            <NavDropdown.Item onClick={() => logout()}>LogOut</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>

@@ -13,7 +13,7 @@ const PropertyTable = ({ categoryFilter, purposeFilter, searchBoxFilter }) => {
     const [propertyList, setPropertyList] = useState([])
     const [showDelete, setShowDelete] = useState(false)
     const [selectedProperty, setSelectedProperty] = useState();
-    const { updateProperty, propertyInfo, setPropertyInfo } = useContext(PropertyContext);
+    const { updateProperty, propertyInfo, setPropertyInfo, editFormStep, setEditFormStep } = useContext(PropertyContext);
     const [showEdit, setShowEdit] = useState(false);
     const [filteredPropertyList, setFilteredPropertyList] = useState([]);
 
@@ -85,6 +85,7 @@ const PropertyTable = ({ categoryFilter, purposeFilter, searchBoxFilter }) => {
     const handleEditClose = () => {
         setShowEdit(false)
         setSelectedProperty(null)
+        setEditFormStep(1)
     }
 
     const handleEditOpen = (property) => {
@@ -105,8 +106,6 @@ const PropertyTable = ({ categoryFilter, purposeFilter, searchBoxFilter }) => {
                 })
                 const data = await res.json();
                 setPropertyInfo(data)
-                console.log(data)
-
             } catch (error) {
                 console.log(error)
             }
@@ -264,9 +263,10 @@ const PropertyTable = ({ categoryFilter, purposeFilter, searchBoxFilter }) => {
                     <EditPropertyForm property={propertyInfo} />
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={handleEditButtonClick}>
+                    {editFormStep === 2 ? (<Button variant="primary" onClick={handleEditButtonClick}>)
+
                         Edit
-                    </Button>
+                    </Button>) : <></>}
                 </Modal.Footer>
             </Modal>
 

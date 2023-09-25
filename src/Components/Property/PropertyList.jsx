@@ -16,7 +16,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const PropertyList = () => {
 
     const [show, setShow] = useState(false);
-    const { property } = useContext(PropertyContext);
+    const { property, createFormStep, setCreateFormStep } = useContext(PropertyContext);
 
     const [selectedPurposeFilter, setSelectedPurposeFilter] = useState("-1")
     const [selectedCategoryFilter, setSelectedCategoryFilter] = useState("-1")
@@ -25,6 +25,7 @@ const PropertyList = () => {
 
     const handleClose = () => {
         setShow(false)
+        setCreateFormStep(1)
     }
 
     const handleOpen = () => {
@@ -107,10 +108,10 @@ const PropertyList = () => {
                         <Col sm='auto'>
                             <Button onClick={handleOpen} className='addBtn' size="md"> + Add New</Button>
                         </Col>
-                        <Col sm='auto' style={{fontSize: 'x-large', color: 'red', cursor: 'pointer'}}>
+                        <Col sm='auto' title='pdf' style={{fontSize: 'x-large', color: 'red', cursor: 'pointer'}}>
                             <FontAwesomeIcon icon='fa-solid fa-file-pdf' />
                         </Col>
-                        <Col sm='auto' style={{fontSize: 'x-large', color: 'green', cursor: 'pointer'}}>
+                        <Col sm='auto' title='Excel' style={{fontSize: 'x-large', color: 'green', cursor: 'pointer'}}>
                             <FontAwesomeIcon icon='fa-solid fa-file-excel' />
                         </Col>
                     </Row>
@@ -141,9 +142,10 @@ const PropertyList = () => {
                         <CreatePropertyForm />
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button className='addBtn' onClick={handleAddButton}>
+                        {createFormStep === 2 ? (<Button className='addBtn' onClick={handleAddButton}>
                             Add Property
-                        </Button>
+                        </Button>):<></>}
+                        
                     </Modal.Footer>
                 </Modal>
                 <PropertyTable categoryFilter={selectedCategoryFilter} purposeFilter={selectedPurposeFilter} searchBoxFilter = {sendSearchInputValue}/>
